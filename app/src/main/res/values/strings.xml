@@ -7,4 +7,6 @@
     <string name="sign_in_button_text">Sign In</string>
     <string name="create_account_button_text">Create Account</string>
     <string name="trouble_signing_in_text">Trouble Signing In?</string>
+    <string name="missingError">Email or Password is missing</string>
+    <string name="incorrectError">The email or password is incorrect</string>
 </resources>

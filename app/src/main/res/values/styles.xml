@@ -25,4 +25,9 @@
         <item name="android:textColor">@color/colorLinks</item>
     </style>
 
+    <style name="errorText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorError</item>
+    </style>
+
 </resources>

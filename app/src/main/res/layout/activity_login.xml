@@ -68,6 +68,14 @@
             android:inputType="textPassword"
             tools:ignore="LabelFor,UnusedAttribute" />
 
+        <TextView
+            android:id="@+id/error_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            style="@style/errorText"
+            android:layout_gravity="center"/>
+
     </LinearLayout>
 
     <LinearLayout

@@ -75,4 +75,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public boolean checkLogin(String email, String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        //search in the users table for any users with a matching email/password
+        String query = "SELECT * FROM USER WHERE EMAIL = " + email + " AND PASSWORD = " + password;
+        Cursor cursor = db.rawQuery(query, null);
+        //if a user is found with matching credentials, return true
+        if(cursor.getCount() < 0){
+            cursor.close();
+            db.close();
+            return false;
+        }
+        else{
+            cursor.close();
+            db.close();
+            return true;
+        }
+    }
+
 }
