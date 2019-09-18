@@ -30,7 +30,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS LEADERBOARD");
+        db.execSQL("DROP TABLE IF EXISTS USER");
+        db.execSQL("DROP TABLE IF EXISTS COMPANY");
+        db.execSQL("DROP TABLE IF EXISTS PERSON");
+        db.execSQL("DROP TABLE IF EXISTS STUDENT");
+        db.execSQL("DROP TABLE IF EXISTS STAFF");
+        db.execSQL("DROP TABLE IF EXISTS LINK");
+        db.execSQL("DROP TABLE IF EXISTS RECOMMENDATION");
+        db.execSQL("DROP TABLE IF EXISTS JOB");
+    }
+
+    public String getUserType(String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT USER_TYPE FROM USER WHERE EMAIL = " + email;
+        Cursor data = db.rawQuery(query, null);
+        data.moveToFirst();
+        String answer = data.getString(0);
+        data.close();
+        return answer;
+    }
+
+    public void insertStudent(String email, String password, int userType,
+                              String qualifications, String academicHistory,
+                              String firstName, String lastName, String jobInterests,
+                              Boolean locationVisibility, String interestedLocation){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues userValues = new ContentValues();
+        ContentValues personValues = new ContentValues();
+        ContentValues studentValues = new ContentValues();
+        userValues.put("EMAIL", email);
+        userValues.put("PASSWORD", password);
+        userValues.put("USER_TYPE", userType);
+        personValues.put("QUALIFICATIONS", qualifications);
+        personValues.put("ACADEMIC_HISTORY", academicHistory);
+        personValues.put("FIRST_NAME", firstName);
+        personValues.put("LAST_NAME", lastName);
+        studentValues.put("JOB_INTERESTS", jobInterests);
+        studentValues.put("LOCATION_VISIBILITY", locationVisibility);
+        studentValues.put("INTERESTED_LOCATION", interestedLocation);
+
+        db.insert("USER", null, userValues);
+        db.insert("PERSON", null, personValues);
+        db.insert("STUDENT", null, studentValues);
+
     }
 
 }
