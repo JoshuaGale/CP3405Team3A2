@@ -19,6 +19,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //add to the database
+        App.getContext().deleteDatabase("helper");
+        databaseHelper = new DatabaseHelper(App.getContext());
+        databaseHelper.insertStudent("joshua", "yeaboi",
+                0, "nothing", "zilch", "joshua",
+                "gale", "nada", false, "nowhere");
+
         errorText = findViewById(R.id.error_text);
         emailText = findViewById(R.id.email_text_field);
         passwordText = findViewById(R.id.password_text_field);
