@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int VERSION = 2;
 
@@ -48,6 +51,50 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String answer = data.getString(0);
         data.close();
         return answer;
+    }
+
+    public ArrayList<ArrayList<String>> getUserRecommendations(String email){
+        ArrayList<ArrayList<String>> recommendations = new ArrayList<>();
+        ArrayList<String> jobDetails;
+        int job;
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM RECOMMENDATION WHERE STUDENT_RECOMMENDED = " + "\'" + email + "\'";
+        Cursor data = db.rawQuery(query, null);
+
+        //Recommended_by for job_title | job_due_date - what the recommendation widget should look like
+
+        //iterate through each column for a single row and add it to an ArrayList
+//        String result;
+//        for(data.moveToFirst(); !data.isAfterLast(); data.moveToNext()){
+//            result = data.getString(data.getColumnCount());
+//            recommendations.add(result);
+//        }
+//
+//        jobDetails = getJobDetails(job);
+//        for (int i = 0; i < recommendations.size(); i++) {
+//            for (int j = 0; j < jobDetails.size(); j++) {
+//                recommendations[i].add(jobDetails[1]);
+//                recommendations[i].add(jobDetails[2]);
+//            }
+//        }
+//        recommendations.add(jobDetails);
+        data.close();
+        //recommendation example: [[recommended_by, job_title, job_due_date], [recommended_by, ...]]
+        return recommendations;
+    }
+
+    public ArrayList<String> getJobDetails(int job){
+        ArrayList<String> jobDetails = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM USER WHERE JOB_ID = " + "\'" + job + "\'";
+        Cursor data = db.rawQuery(query, null);
+        data.moveToFirst();
+        for (int i = 0; i < data.getCount(); i++) {
+            jobDetails.add(data.getString(i));
+            data.moveToNext();
+        }
+        data.close();
+        return jobDetails;
     }
 
     void insertStudent(String email, String password, int userType,

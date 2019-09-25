@@ -16,12 +16,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
-
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="<"
-                android:textSize="20sp" />
+                android:text="@string/back_text"
+                android:textSize="20sp"
+                android:id="@+id/backButton"/>
         </LinearLayout>
 
         <LinearLayout

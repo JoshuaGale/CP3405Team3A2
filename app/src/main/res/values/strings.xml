@@ -9,4 +9,5 @@
     <string name="trouble_signing_in_text">Trouble Signing In?</string>
     <string name="missingError">Email or Password is missing</string>
     <string name="incorrectError">The email or password is incorrect</string>
+    <string name="back_text"><![CDATA[<]]></string>
 </resources>

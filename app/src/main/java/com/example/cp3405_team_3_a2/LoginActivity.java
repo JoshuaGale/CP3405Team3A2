@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 //attach the user type so we can show the appropriate view
                 //(could possibly just check the userType on creation of each activity)
                 intent.putExtra("userType", databaseHelper.getUserType(email));
+                intent.putExtra("userEmail", email);
                 startActivity(intent);
             }
             else{
