@@ -28,8 +28,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS STUDENT (EMAIL TEXT PRIMARY KEY,  JOB_INTERESTS TEXT, LOCATION_VISIBILITY BOOLEAN, INTERESTED_LOCATION TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS STAFF (EMAIL TEXT PRIMARY KEY,  JOB_POSITION TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS LINK (EMAIL TEXT PRIMARY KEY,  LINK_TYPE TEXT, LINK_URL TEXT)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS RECOMMENDATION (RECOMMENDATION_ID INTEGER PRIMARY KEY AUTOINCREMENT,  STUDENT_RECOMMENDED TEXT, RECOMMENDED_BY TEXT, JOB INTEGER)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS JOB (JOB_ID INTEGER PRIMARY KEY AUTOINCREMENT,  COMPANY TEXT, JOB_TITLE TEXT, JOB_DESCRIPTION TEXT, JOB_TYPE TEXT, JOB_SALARY TEXT, JOB_DUE_DATE TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS RECOMMENDATION (RECOMMENDATION_ID INTEGER PRIMARY KEY AUTOINCREMENT,  STUDENT_RECOMMENDED TEXT, RECOMMENDED_BY TEXT, JOB INTEGER, DATE_CREATED INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS JOB (JOB_ID INTEGER PRIMARY KEY AUTOINCREMENT,  COMPANY TEXT, JOB_TITLE TEXT, JOB_DESCRIPTION TEXT, JOB_TYPE TEXT, JOB_SALARY TEXT, JOB_DUE_DATE TEXT, DATE_CREATED INTEGER)");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -52,6 +52,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         data.close();
         return answer;
     }
+
+
+    Cursor getUserRecommendationsTrial(String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM RECOMMENDATION WHERE STUDENT_RECOMMENDED = " + "\'" + email + "\'" + " ORDER BY DATE_CREATED DESC";
+        return db.rawQuery(query, null);
+    }
+
+
 
     public ArrayList<ArrayList<String>> getUserRecommendations(String email){
         ArrayList<ArrayList<String>> recommendations = new ArrayList<>();
@@ -105,7 +114,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues userValues = new ContentValues();
         ContentValues personValues = new ContentValues();
         ContentValues studentValues = new ContentValues();
-        Log.i("haha", email);
         userValues.put("EMAIL", email);
         userValues.put("PASSWORD", password);
         userValues.put("USER_TYPE", userType);
@@ -123,6 +131,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("PERSON", null, personValues);
         db.insert("STUDENT", null, studentValues);
 
+    }
+
+    void insertRecommendation(String studentRrcommended, String recommendedBy, int job, Long dateCreated){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues recommendationValues = new ContentValues();
+        recommendationValues.put("STUDENT_RECOMMENDED", studentRrcommended);
+        recommendationValues.put("RECOMMENDED_BY", recommendedBy);
+        recommendationValues.put("JOB", job);
+        recommendationValues.put("DATE_CREATED", dateCreated);
+
+        db.insert("RECOMMENDATION", null, recommendationValues);
     }
 
     public boolean checkLogin(String email, String password){

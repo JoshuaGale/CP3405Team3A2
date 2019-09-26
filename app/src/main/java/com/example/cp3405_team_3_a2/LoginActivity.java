@@ -25,6 +25,9 @@ public class LoginActivity extends AppCompatActivity {
         databaseHelper.insertStudent("joshua", "yeaboi",
                 0, "nothing", "zilch", "joshua",
                 "gale", "nada", false, "nowhere");
+        long unixTime = System.currentTimeMillis() / 1000L;
+        databaseHelper.insertRecommendation("joshua", "Tom", 1, unixTime);
+        databaseHelper.insertRecommendation("joshua", "James", 2, unixTime);
 
         errorText = findViewById(R.id.error_text);
         emailText = findViewById(R.id.email_text_field);
