@@ -50,44 +50,54 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
+        <item
             android:id="@+id/homeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Home"
+            android:text="@string/home"
+            android:icon="@drawable/home_icon"
+            app:showAsAction= "always"
             android:textSize="11sp" />
 
-        <Button
+        <item
             android:id="@+id/jobButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Jobs"
+            android:text="@string/jobs"
+            android:icon="@drawable/job_icon"
+            app:showAsAction= "always"
             android:textSize="11sp" />
 
-        <Button
+        <item
             android:id="@+id/profileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Profile"
+            android:text="@string/profile"
+            android:icon="@drawable/profile_icon"
+            app:showAsAction= "always"
             android:textSize="11sp" />
 
-        <Button
+        <item
             android:id="@+id/messagesButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Messages"
+            android:text="@string/messages"
+            android:icon="@drawable/messaging_icon"
+            app:showAsAction= "always"
             android:textSize="11sp" />
 
-        <Button
+        <item
             android:id="@+id/settingsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Settings"
+            android:text="@string/settings"
+            android:icon="@drawable/settings_icon"
+            app:showAsAction= "always"
             android:textSize="11sp" />
     </LinearLayout>
 
