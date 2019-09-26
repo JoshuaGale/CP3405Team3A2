@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/homeButton"
+            android:title="@string/home"
+            android:icon="@drawable/home_icon" />
+
+        <item
+            android:id="@+id/jobButton"
+            android:title="@string/jobs"
+            android:icon="@drawable/job_icon" />
+
+        <item
+            android:id="@+id/profileButton"
+            android:title="@string/profile"
+            android:icon="@drawable/profile_icon" />
+
+        <item
+            android:id="@+id/messagesButton"
+            android:title="@string/messages"
+            android:icon="@drawable/messaging_icon" />
+
+        <item
+            android:id="@+id/settingsButton"
+            android:title="@string/settings"
+            android:icon="@drawable/settings_icon"/>
+    </menu>
