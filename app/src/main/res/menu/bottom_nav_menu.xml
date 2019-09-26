@@ -1,29 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="@string/home"
+        android:id="@+id/homeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/home"
+        android:icon="@drawable/home_icon"
+        app:showAsAction="ifRoom"
+        android:textSize="11sp" />
 
-        <item
-            android:id="@+id/homeButton"
-            android:title="@string/home"
-            android:icon="@drawable/home_icon" />
+    <item
+        android:title="@string/jobs"
+        android:id="@+id/jobButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/jobs"
+        android:icon="@drawable/job_icon"
+        android:textSize="11sp"
+        app:showAsAction="ifRoom"/>
 
-        <item
-            android:id="@+id/jobButton"
-            android:title="@string/jobs"
-            android:icon="@drawable/job_icon" />
+    <item
+        android:title="@string/profile"
+        android:id="@+id/profileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/profile"
+        android:icon="@drawable/profile_icon"
+        android:textSize="11sp"
+        app:showAsAction="ifRoom"/>
 
-        <item
-            android:id="@+id/profileButton"
-            android:title="@string/profile"
-            android:icon="@drawable/profile_icon" />
+    <item
+        android:title="@string/messages"
+        android:id="@+id/messagesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/messages"
+        android:icon="@drawable/messaging_icon"
+        android:textSize="11sp"
+        app:showAsAction="ifRoom"/>
 
-        <item
-            android:id="@+id/messagesButton"
-            android:title="@string/messages"
-            android:icon="@drawable/messaging_icon" />
+    <item
+        android:title="@string/settings"
+        android:id="@+id/settingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/settings"
+        android:icon="@drawable/settings_icon"
+        android:textSize="11sp"
+        app:showAsAction="ifRoom"/>
 
-        <item
-            android:id="@+id/settingsButton"
-            android:title="@string/settings"
-            android:icon="@drawable/settings_icon"/>
-    </menu>
+</menu>

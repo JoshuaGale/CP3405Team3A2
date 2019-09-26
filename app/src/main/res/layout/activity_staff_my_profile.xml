@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="My Profile"
+                android:text="@string/my_profile"
                 android:textAlignment="center"
                 android:textSize="30sp" />
         </LinearLayout>
@@ -47,7 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="618sp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/navHeader"
         app:layout_constraintTop_toBottomOf="@+id/headerLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="36dp"
-                android:text="Edit"
+                android:text="@string/edit"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -106,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="250dp"
-                android:text="Job Position:"
+                android:text="@string/job_position"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -153,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="450dp"
-                android:text="Academic History:"
+                android:text="@string/academic_history"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -174,24 +173,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
-
-    <LinearLayout
-        android:id="@+id/navHeader"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </LinearLayout>
-    <android.support.design.weidget.BottomNavigationView
-        android:id="@+id/bottom_nav"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_gravity="start"
-        app:layout_constraintBottom_toBottomOf= "parent"
-        app:layout_constraintLeft_toLeftOf= "parent"
-        app:layout_constraintRight_toRightOf= "parent"
-        app:menu= "@menu/bottom_nav_menu"/>
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

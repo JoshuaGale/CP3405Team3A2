@@ -20,4 +20,12 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="my_profile">My Profile</string>
+    <string name="edit">Edit</string>
+    <string name="company">Company:</string>
+    <string name="company_description">Company Description:</string>
+    <string name="my_profile">My Profile</string>
+    <string name="edit">Edit</string>
+    <string name="job_position">Job Position:</string>
+    <string name="academic_history">Academic History:</string>
 </resources>

@@ -23,13 +23,22 @@ public class HomeActivity extends AppCompatActivity {
         ArrayList<ArrayList<String>> itemList;
         databaseHelper = new DatabaseHelper(App.getContext());
 
+
+
+
+
+        listView.setAdapter(new NotificationAdapter(this, new String[] { "data1",
+                "data2" }));
+
+
+
         //get user email from previous activity for data retrieval
         Intent intent = getIntent();
         email = intent.getStringExtra("userEmail");
         itemList = databaseHelper.getUserRecommendations(email);
 
 //        //set adapter for the ListView and add on click functionality
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemList);
+//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, boi);
 //        listView.setAdapter(arrayAdapter);
 //        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
@@ -37,5 +46,5 @@ public class HomeActivity extends AppCompatActivity {
 //
 //            }
 //        });
-    }
+   }
 }
