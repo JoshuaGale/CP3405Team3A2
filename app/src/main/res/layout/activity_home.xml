@@ -42,63 +42,14 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <item
-            android:id="@+id/homeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/home"
-            android:icon="@drawable/home_icon"
-            app:showAsAction= "always"
-            android:textSize="11sp" />
-
-        <item
-            android:id="@+id/jobButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/jobs"
-            android:icon="@drawable/job_icon"
-            app:showAsAction= "always"
-            android:textSize="11sp" />
-
-        <item
-            android:id="@+id/profileButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/profile"
-            android:icon="@drawable/profile_icon"
-            app:showAsAction= "always"
-            android:textSize="11sp" />
-
-        <item
-            android:id="@+id/messagesButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/messages"
-            android:icon="@drawable/messaging_icon"
-            app:showAsAction= "always"
-            android:textSize="11sp" />
-
-        <item
-            android:id="@+id/settingsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/settings"
-            android:icon="@drawable/settings_icon"
-            app:showAsAction= "always"
-            android:textSize="11sp" />
-    </LinearLayout>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
