@@ -25,6 +25,11 @@ public class LoginActivity extends AppCompatActivity {
         databaseHelper.insertStudent("joshua", "yeaboi",
                 0, "nothing", "zilch", "joshua",
                 "gale", "nada", false, "nowhere");
+        databaseHelper.insertStaff("lindsay", "pog", 1, "IT Honours",
+                "Academic for 25 years", "Lindsay",
+                "Ward", "Lecturer at JCU");
+        databaseHelper.insertCompany("google", "ezclap", 2,
+                "Google", "We are google, give us your data");
         long unixTime = System.currentTimeMillis() / 1000L;
         databaseHelper.insertRecommendation("joshua", "Tom", 1, unixTime);
         databaseHelper.insertRecommendation("joshua", "James", 2, unixTime);

@@ -27,8 +27,6 @@ public class HomeActivity extends AppCompatActivity {
         listView = findViewById(R.id.itemList);
         databaseHelper = new DatabaseHelper(App.getContext());
 
-
-
         //get user email from previous activity for data retrieval
         Intent intent = getIntent();
         email = intent.getStringExtra("userEmail");
@@ -36,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
    }
 
     public void populateStudentListView() {
-        Cursor data = databaseHelper.getUserRecommendationsTrial(email);
+        Cursor data = databaseHelper.getUserRecommendations(email);
         ArrayList<String> jobNameArray = new ArrayList<>();
         ArrayList<String> recommendationArray = new ArrayList<>();
         ArrayList<String> notificationTypeArray = new ArrayList<>();
@@ -48,13 +46,13 @@ public class HomeActivity extends AppCompatActivity {
 
         }
 
-        nameArray = jobNameArray.toArray(new String[jobNameArray.size()]);
-        infoArray = recommendationArray.toArray(new String[recommendationArray.size()]);
-        typeArray = notificationTypeArray.toArray(new String[notificationTypeArray.size()]);
+        nameArray = jobNameArray.toArray(new String[0]);
+        infoArray = recommendationArray.toArray(new String[0]);
+        typeArray = notificationTypeArray.toArray(new String[0]);
 
-        NotificationAdapter whatever = new NotificationAdapter(this, nameArray, infoArray, typeArray);
+        NotificationAdapter notificationAdapter = new NotificationAdapter(this, nameArray, infoArray, typeArray);
         listView = findViewById(R.id.itemList);
-        listView.setAdapter(whatever);
+        listView.setAdapter(notificationAdapter);
     }
 
 
