@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -25,9 +23,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS USER (EMAIL TEXT PRIMARY KEY, PASSWORD TEXT, USER_TYPE INTEGER)");
         db.execSQL("CREATE TABLE IF NOT EXISTS COMPANY (EMAIL TEXT PRIMARY KEY, COMPANY_NAME TEXT, COMPANY_DESCRIPTION TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS PERSON (EMAIL TEXT PRIMARY KEY, QUALIFICATIONS TEXT, ACADEMIC_HISTORY TEXT, FIRST_NAME TEXT, LAST_NAME TEXT)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS STUDENT (EMAIL TEXT PRIMARY KEY,  JOB_INTERESTS TEXT, LOCATION_VISIBILITY BOOLEAN, INTERESTED_LOCATION TEXT)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS STUDENT (EMAIL TEXT PRIMARY KEY,  JOB_INTERESTS TEXT, LOCATION_VISIBILITY BOOLEAN, INTERESTED_LOCATION TEXT, GITHUB_LINK TEXT, LINKEDIN_LINK TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS STAFF (EMAIL TEXT PRIMARY KEY,  JOB_POSITION TEXT)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS LINK (EMAIL TEXT PRIMARY KEY,  LINK_TYPE TEXT, LINK_URL TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS RECOMMENDATION (RECOMMENDATION_ID INTEGER PRIMARY KEY AUTOINCREMENT,  STUDENT_RECOMMENDED TEXT, RECOMMENDED_BY TEXT, JOB INTEGER, DATE_CREATED INTEGER)");
         db.execSQL("CREATE TABLE IF NOT EXISTS JOB (JOB_ID INTEGER PRIMARY KEY AUTOINCREMENT,  COMPANY TEXT, JOB_TITLE TEXT, JOB_DESCRIPTION TEXT, JOB_TYPE TEXT, JOB_SALARY TEXT, JOB_DUE_DATE TEXT, DATE_CREATED INTEGER)");
     }
@@ -124,7 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public String getUserType(String email){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT 1 FROM USER WHERE EMAIL = " + "\'" + email + "\'";
+        String query = "SELECT EMAIL FROM USER WHERE EMAIL = " + "\'" + email + "\'";
         Cursor data = db.rawQuery(query, null);
         data.moveToFirst();
         String answer = data.getString(0);
@@ -169,5 +166,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-
+    
 }

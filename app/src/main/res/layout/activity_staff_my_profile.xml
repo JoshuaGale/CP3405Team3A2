@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -73,7 +75,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                android:contentDescription="@string/profile_pic_desc" />
 
             <TextView
                 android:id="@+id/nameHeader"
@@ -87,17 +90,19 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <EditText
+                android:id="@+id/nameInputField"
                 android:layout_width="340dp"
                 android:layout_height="47dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="184dp"
                 android:layout_marginEnd="32dp"
+                android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="Autofill,LabelFor" />
 
-            </EditText>
 
             <TextView
                 android:id="@+id/jobPositionHeader"
@@ -111,41 +116,44 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
+                android:id="@+id/jobPositionInput"
                 android:layout_width="340dp"
                 android:layout_height="47dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="284dp"
                 android:layout_marginEnd="32dp"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </EditText>
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="Autofill,LabelFor"/>
 
             <TextView
-                android:id="@+id/quafilicationsHeader"
+                android:id="@+id/qualificationsHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="350dp"
-                android:text="Qualifications:"
+                android:text="@string/qualifications"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
+                android:id="@+id/qualificationsInput"
                 android:layout_width="340dp"
                 android:layout_height="47dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="384dp"
                 android:layout_marginEnd="32dp"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="Autofill,LabelFor"/>
 
-            </EditText>
             <TextView
                 android:id="@+id/academicHistoryHeader"
                 android:layout_width="wrap_content"
@@ -158,17 +166,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
+                android:id="@+id/academicHistoryInput"
                 android:layout_width="340dp"
                 android:layout_height="47dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="484dp"
                 android:layout_marginEnd="32dp"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </EditText>
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="Autofill,LabelFor"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

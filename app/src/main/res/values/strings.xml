@@ -26,4 +26,7 @@
     <string name="edit">Edit</string>
     <string name="job_position">Job Position:</string>
     <string name="academic_history">Academic History:</string>
+    <string name="profile_pic_desc">User profile Picture</string>
+    <string name="qualifications">Qualifications:</string>
+    <string name="Company_profile_pic_desc">Company Profile Picture</string>
 </resources>

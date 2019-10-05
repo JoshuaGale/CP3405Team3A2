@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -73,7 +74,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                android:contentDescription="@string/Company_profile_pic_desc" />
 
             <TextView
                 android:id="@+id/companyNameHeader"
@@ -87,17 +89,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
+                android:id="@+id/companyNameInput"
                 android:layout_width="340dp"
                 android:layout_height="47dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="184dp"
                 android:layout_marginEnd="32dp"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </EditText>
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="Autofill,LabelFor"/>
 
             <TextView
                 android:id="@+id/companyDescriptionHeader"
@@ -111,23 +114,21 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
+                android:id="@+id/companyDescriptionInput"
                 android:layout_width="340dp"
                 android:layout_height="47dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="284dp"
                 android:layout_marginEnd="32dp"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </EditText>
-
-
-
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="Autofill,LabelFor" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
 
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
