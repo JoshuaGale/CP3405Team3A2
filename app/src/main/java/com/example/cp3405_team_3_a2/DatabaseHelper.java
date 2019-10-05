@@ -121,7 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public String getUserType(String email){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT EMAIL FROM USER WHERE EMAIL = " + "\'" + email + "\'";
+        String query = "SELECT USER_TYPE FROM USER WHERE EMAIL = " + "\'" + email + "\'";
         Cursor data = db.rawQuery(query, null);
         data.moveToFirst();
         String answer = data.getString(0);
@@ -166,5 +166,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-    
+
+    public Cursor getStudentProfile(String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM STUDENT, PERSON WHERE STUDENT.EMAIL  = PERSON.EMAIL AND STUDENT.EMAIL = " + "\'" + email + "\'";
+        return db.rawQuery(query, null);
+    }
+
+    public Cursor getStaffProfile(String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM STAFF, PERSON WHERE STUDENT.EMAIL  = PERSON.EMAIL AND STAFF.EMAIL = " + "\'" + email + "\'";
+        return db.rawQuery(query, null);
+    }
+
+    public Cursor getCompanyProfile(String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM COMPANY WHERE COMPNAY.EMAIL = " + "\'" + email + "\'";
+        return db.rawQuery(query, null);
+    }
+
 }
