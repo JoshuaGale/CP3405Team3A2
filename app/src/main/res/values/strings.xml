@@ -29,4 +29,7 @@
     <string name="profile_pic_desc">User profile Picture</string>
     <string name="qualifications">Qualifications:</string>
     <string name="Company_profile_pic_desc">Company Profile Picture</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
