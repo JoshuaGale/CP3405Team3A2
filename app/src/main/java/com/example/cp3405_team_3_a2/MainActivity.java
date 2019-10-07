@@ -26,43 +26,52 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
     HomeFragment homeFragment = new HomeFragment();
     StudentProfileFragment studentProfileFragment = new StudentProfileFragment();
-    Fragment[] fragments = {homeFragment, studentProfileFragment};
+    StaffProfileFragment staffProfileFragment = new StaffProfileFragment();
+    CompanyProfileFragment companyProfileFragment = new CompanyProfileFragment();
+    Fragment[] fragments = {homeFragment, studentProfileFragment, staffProfileFragment, companyProfileFragment};
 
 
     //home stuff
     String email;
-    ListView listView;
-
-    String[] typeArray;
-    String[] nameArray;
-    String[] infoArray;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listView = findViewById(R.id.itemList);
         databaseHelper = new DatabaseHelper(App.getContext());
 
         BottomNavigationView bottomNavView = findViewById(R.id.nav_view);
         bottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Log.i("boi", Integer.toString(menuItem.getItemId()));
                 switch (menuItem.getItemId()){
                     case R.id.homeButton:
                         changeFragment(0);
                         break;
 
                     case R.id.jobButton:
-                        changeFragment(2);
                         break;
 
                     case R.id.profileButton:
-                        changeFragment(1);
+                        Log.i("boi", Integer.toString(databaseHelper.getUserType(email)));
+                        switch (databaseHelper.getUserType(email)){
+                            case 0:
+                                changeFragment(1);
+                                break;
+                            case 1:
+                                changeFragment(2);
+                                break;
+                            case 2:
+                                changeFragment(3);
+                                break;
+                        }
+                        break;
+
+                    case R.id.messagesButton:
+                        break;
+
+                    case R.id.settingsButton:
                         break;
 
                 }

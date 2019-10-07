@@ -85,10 +85,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         personValues.put("FIRST_NAME", firstName);
         personValues.put("LAST_NAME", lastName);
         staffValues.put("JOB_POSITION", jobPosition);
+        staffValues.put("EMAIL", email);
 
         db.insert("USER", null, userValues);
         db.insert("PERSON", null, personValues);
-        db.insert("STUDENT", null, staffValues);
+        db.insert("STAFF", null, staffValues);
     }
 
     void insertCompany (String email, String password, int userType,
@@ -103,9 +104,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         userValues.put("USER_TYPE", userType);
         companyValues.put("COMPANY_NAME", companyName);
         companyValues.put("COMPANY_DESCRIPTION", companyDescription);
+        companyValues.put("EMAIL", email);
 
         db.insert("USER", null, userValues);
-        db.insert("PERSON", null, companyValues);
+        db.insert("COMPANY", null, companyValues);
     }
 
     void insertRecommendation(String studentRecommended, String recommendedBy, int job, Long dateCreated){
@@ -119,14 +121,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("RECOMMENDATION", null, recommendationValues);
     }
 
-    public String getUserType(String email){
+    public int getUserType(String email){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT USER_TYPE FROM USER WHERE EMAIL = " + "\'" + email + "\'";
         Cursor data = db.rawQuery(query, null);
         data.moveToFirst();
         String answer = data.getString(0);
         data.close();
-        return answer;
+        int intAnswer = Integer.valueOf(answer);
+        return intAnswer;
     }
 
     public ArrayList<String> getJobDetails(int job){
@@ -169,19 +172,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getStudentProfile(String email){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM STUDENT, PERSON WHERE STUDENT.EMAIL  = PERSON.EMAIL AND STUDENT.EMAIL = " + "\'" + email + "\'";
+        String query = "SELECT p.QUALIFICATIONS, p.ACADEMIC_HISTORY, p.FIRST_NAME, p.LAST_NAME, s.JOB_INTERESTS, s.LOCATION_VISIBILITY, s.INTERESTED_LOCATION, s.GITHUB_LINK, s.LINKEDIN_LINK FROM STUDENT s, PERSON p WHERE s.EMAIL  = p.EMAIL AND s.EMAIL = " + "\'" + email + "\'";
         return db.rawQuery(query, null);
     }
 
     public Cursor getStaffProfile(String email){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM STAFF, PERSON WHERE STUDENT.EMAIL  = PERSON.EMAIL AND STAFF.EMAIL = " + "\'" + email + "\'";
+        String query = "SELECT p.QUALIFICATIONS, p.ACADEMIC_HISTORY, p.FIRST_NAME, p.LAST_NAME, s.JOB_POSITION FROM STAFF s, PERSON p WHERE s.EMAIL  = p.EMAIL AND s.EMAIL = " + "\'" + email + "\'";
         return db.rawQuery(query, null);
     }
 
     public Cursor getCompanyProfile(String email){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM COMPANY WHERE COMPNAY.EMAIL = " + "\'" + email + "\'";
+        String query = "SELECT COMPANY_NAME, COMPANY_DESCRIPTION FROM COMPANY WHERE EMAIL = " + "\'" + email + "\'";
         return db.rawQuery(query, null);
     }
 
