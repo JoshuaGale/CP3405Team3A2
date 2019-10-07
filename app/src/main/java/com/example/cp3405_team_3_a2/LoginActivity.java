@@ -25,6 +25,11 @@ public class LoginActivity extends AppCompatActivity {
         databaseHelper.insertStudent("joshua", "yeaboi",
                 0, "nothing", "zilch", "joshua",
                 "gale", "nada", false, "nowhere");
+        databaseHelper.insertStaff("lindsay", "pog", 1, "IT Honours",
+                "Academic for 25 years", "Lindsay",
+                "Ward", "Lecturer at JCU");
+        databaseHelper.insertCompany("google", "ezclap", 2,
+                "Google", "We are google, give us your data");
         long unixTime = System.currentTimeMillis() / 1000L;
         databaseHelper.insertRecommendation("joshua", "Tom", 1, unixTime);
         databaseHelper.insertRecommendation("joshua", "James", 2, unixTime);
@@ -58,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         else{
             isValidUser = databaseHelper.checkLogin(email, password);
             if(isValidUser){
-                intent = new Intent(this, HomeActivity.class);
+                intent = new Intent(this, MainActivity.class);
                 //attach the user type so we can show the appropriate view
                 //(could possibly just check the userType on creation of each activity)
                 intent.putExtra("userType", databaseHelper.getUserType(email));

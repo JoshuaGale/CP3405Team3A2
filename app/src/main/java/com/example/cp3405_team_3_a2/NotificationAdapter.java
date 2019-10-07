@@ -1,48 +1,56 @@
 package com.example.cp3405_team_3_a2;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-class NotificationAdapter extends BaseAdapter {
+public class NotificationAdapter extends ArrayAdapter {
 
-    Context context;
-    String[] data;
-    private static LayoutInflater inflater = null;
+    //to reference the Activity
+    private final Activity context;
 
-    public NotificationAdapter(Context context, String[] data) {
-        this.context = context;
-        this.data = data;
-        inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    //to store the list of countries
+    private final String[] typeArray;
+
+    //to store the list of countries
+    private final String[] nameArray;
+
+    //to store the list of countries
+    private final String[] infoArray;
+
+    public NotificationAdapter(Activity context, String[] nameArrayParam, String[] infoArrayParam, String[] typeArrayParam){
+
+        super(context,R.layout.row , nameArrayParam);
+        this.context=context;
+        this.typeArray = typeArrayParam;
+        this.nameArray = nameArrayParam;
+        this.infoArray = infoArrayParam;
+
     }
 
-    @Override
-    public int getCount() {
-        return data.length;
-    }
+    public View getView(int position, View view, ViewGroup parent) {
+        LayoutInflater inflater=context.getLayoutInflater();
+        View rowView=inflater.inflate(R.layout.row, null,true);
 
-    @Override
-    public Object getItem(int position) {
-        return data[position];
-    }
+        //this code gets references to objects in the listview_row.xml file
+        TextView nameTextField = rowView.findViewById(R.id.text1);
+        TextView infoTextField = rowView.findViewById(R.id.text2);
+        TextView typeTextField = rowView.findViewById(R.id.text3);
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
+        //this code sets the values of the objects to values from the arrays
+        nameTextField.setText(nameArray[position]);
+        infoTextField.setText(infoArray[position]);
+        typeTextField.setText(typeArray[position]);
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View vi = convertView;
-        if (vi == null)
-            vi = inflater.inflate(R.layout.row, null);
-        TextView text = vi.findViewById(R.id.text);
-        text.setText(data[position]);
-        return vi;
-    }
+        return rowView;
+
+    };
+
 }
 
