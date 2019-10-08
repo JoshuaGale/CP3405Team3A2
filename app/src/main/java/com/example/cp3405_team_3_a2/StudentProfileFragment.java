@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -37,6 +38,26 @@ public class StudentProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_student_profile, container, false);
+
+        EditText nameText = view.findViewById(R.id.student_profile_name);
+        EditText linkText = view.findViewById(R.id.student_profile_links);
+        EditText jobInterestsText = view.findViewById(R.id.student_profile_job_interests);
+        EditText qualificationsText = view.findViewById(R.id.student_profile_qualifications);
+        EditText academicHistoryText = view.findViewById(R.id.student_profile_academic_history);
+        EditText interestedLocationText = view.findViewById(R.id.student_profile_interested_location);
+        String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
+        Cursor data = databaseHelper.getStudentProfile(email);
+        data.moveToFirst();
+
+        String fullName = data.getString(2) + " " + data.getString(3);
+        nameText.setText(fullName);
+        String links = data.getString(7) + " " + data.getString(8);
+        linkText.setText(links);
+        jobInterestsText.setText(data.getString(4));
+        qualificationsText.setText(data.getString(0));
+        academicHistoryText.setText(data.getString(1));
+        interestedLocationText.setText(data.getString(6));
+
 
         return view;
 
