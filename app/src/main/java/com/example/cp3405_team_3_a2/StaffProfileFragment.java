@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Objects;
@@ -18,6 +19,7 @@ import java.util.Objects;
 public class StaffProfileFragment extends Fragment {
     private HomeFragment.OnFragmentInteractionListener mListener;
 
+    private boolean editable = false;
     private DatabaseHelper databaseHelper;
 
     public StaffProfileFragment() {
@@ -36,11 +38,12 @@ public class StaffProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_staff_profile, container, false);
 
-        EditText nameText = view.findViewById(R.id.nameInputField);
-        EditText jobPositionText = view.findViewById(R.id.jobPositionInput);
-        EditText qualificationsText = view.findViewById(R.id.qualificationsInput);
-        EditText academicHistoryText = view.findViewById(R.id.academicHistoryInput);
-        String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
+        final EditText nameText = view.findViewById(R.id.nameInputField);
+        final EditText jobPositionText = view.findViewById(R.id.jobPositionInput);
+        final EditText qualificationsText = view.findViewById(R.id.qualificationsInput);
+        final EditText academicHistoryText = view.findViewById(R.id.academicHistoryInput);
+        final Button editButton = view.findViewById(R.id.editButton);
+        final String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
         Cursor data = databaseHelper.getStaffProfile(email);
         data.moveToFirst();
 
@@ -50,6 +53,30 @@ public class StaffProfileFragment extends Fragment {
         qualificationsText.setText(data.getString(0));
         academicHistoryText.setText(data.getString(1));
 
+        editButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                if (!editable) {
+                    nameText.setEnabled(true);
+                    jobPositionText.setEnabled(true);
+                    qualificationsText.setEnabled(true);
+                    academicHistoryText.setEnabled(true);
+                    editButton.setText("Save");
+                    editable = true;
+                }
+                else {
+                    nameText.setEnabled(false);
+                    jobPositionText.setEnabled(false);
+                    qualificationsText.setEnabled(false);
+                    academicHistoryText.setEnabled(false);
+                    editButton.setText("Edit");
+                    databaseHelper.updateStaff(email, nameText.getText().toString(), jobPositionText.getText().toString(), qualificationsText.getText().toString(), academicHistoryText.getText().toString());
+                    editable = false;
+
+                }
+
+            }
+
+        });
 
 
         return view;

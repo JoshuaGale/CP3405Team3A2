@@ -66,9 +66,6 @@ public class CompanyProfileFragment extends Fragment {
                     databaseHelper.updateCompany(email, nameText.getText().toString(), descriptionText.getText().toString());
                     editable = false;
 
-                    Cursor thing = databaseHelper.getCompanyProfile(email);
-                    thing.moveToFirst();
-                    thing.close();
                 }
 
             }

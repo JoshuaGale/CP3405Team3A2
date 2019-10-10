@@ -35,13 +35,13 @@
                 android:id="@+id/profilePic"
                 android:layout_width="125sp"
                 android:layout_height="125dp"
+                android:contentDescription="@string/profile_pic_desc"
                 android:src="@drawable/default_profile_pic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                android:contentDescription="@string/profile_pic_desc" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/nameHeader"
@@ -52,20 +52,21 @@
                 android:text="@string/profile_name"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/nameInputField"
                 android:layout_width="340dp"
-                android:layout_height="47dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="184dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:inputType="textPersonName"
+                android:enabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameHeader"
                 tools:ignore="Autofill,LabelFor" />
 
 
@@ -74,75 +75,84 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="250dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/job_position"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/nameInputField" />
 
             <EditText
                 android:id="@+id/jobPositionInput"
                 android:layout_width="340dp"
-                android:layout_height="47dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="284dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:inputType="text"
+                android:inputType="textMultiLine"
+                android:maxLines="8"
+                android:minLines="1"
+                android:enabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="Autofill,LabelFor"/>
+                app:layout_constraintTop_toBottomOf="@+id/jobPositionHeader"
+                tools:ignore="Autofill,LabelFor" />
 
             <TextView
                 android:id="@+id/qualificationsHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="350dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/qualifications"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/jobPositionInput" />
 
             <EditText
                 android:id="@+id/qualificationsInput"
                 android:layout_width="340dp"
-                android:layout_height="47dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="384dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:inputType="text"
+                android:inputType="textMultiLine"
+                android:maxLines="8"
+                android:minLines="1"
+                android:enabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="Autofill,LabelFor"/>
+                app:layout_constraintTop_toBottomOf="@+id/qualificationsHeader"
+                tools:ignore="Autofill,LabelFor" />
 
             <TextView
                 android:id="@+id/academicHistoryHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="450dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/academic_history"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/qualificationsInput" />
 
             <EditText
                 android:id="@+id/academicHistoryInput"
                 android:layout_width="340dp"
-                android:layout_height="47dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="484dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:inputType="text"
+                android:inputType="textMultiLine"
+                android:maxLines="8"
+                android:minLines="1"
+                android:enabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="Autofill,LabelFor"/>
+                app:layout_constraintTop_toBottomOf="@+id/academicHistoryHeader"
+                tools:ignore="Autofill,LabelFor" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

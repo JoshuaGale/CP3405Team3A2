@@ -198,4 +198,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         companyValues.put("COMPANY_DESCRIPTION", description);
         db.update("COMPANY",  companyValues, "EMAIL = " + "\'" + email + "\'", null);
     }
+
+
+    public void updateStaff(String email, String name, String jobPositionText, String qualificationsText, String academicHistoryText){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues staffValues = new ContentValues();
+        ContentValues personValues = new ContentValues();
+        //TODO: solve the 2 name problem
+        personValues.put("FIRST_NAME", name);
+        personValues.put("LAST_NAME", name);
+        staffValues.put("JOB_POSITION", jobPositionText);
+        personValues.put("QUALIFICATIONS", qualificationsText);
+        personValues.put("ACADEMIC_HISTORY", academicHistoryText);
+
+        db.update("PERSON",  personValues, "EMAIL = " + "\'" + email + "\'", null);
+        db.update("STAFF",  staffValues, "EMAIL = " + "\'" + email + "\'", null);
+    }
+
 }

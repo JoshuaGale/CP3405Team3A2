@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         setContentView(R.layout.activity_main);
 
         databaseHelper = new DatabaseHelper(App.getContext());
-
+        final TextView homeHeading = findViewById(R.id.homeHeading);
         BottomNavigationView bottomNavView = findViewById(R.id.nav_view);
         bottomNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -48,13 +49,15 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                 switch (menuItem.getItemId()){
                     case R.id.homeButton:
                         changeFragment(0);
+                        homeHeading.setText("Home");
                         break;
 
                     case R.id.jobButton:
+                        homeHeading.setText("Job");
                         break;
 
                     case R.id.profileButton:
-                        Log.i("boi", Integer.toString(databaseHelper.getUserType(email)));
+                        homeHeading.setText("Profile");
                         switch (databaseHelper.getUserType(email)){
                             case 0:
                                 changeFragment(1);
@@ -69,9 +72,13 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                         break;
 
                     case R.id.messagesButton:
+                        homeHeading.setText("Messaging");
+
                         break;
 
                     case R.id.settingsButton:
+                        homeHeading.setText("Settings");
+
                         break;
 
                 }
