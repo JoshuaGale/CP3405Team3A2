@@ -7,9 +7,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Objects;
@@ -18,6 +21,7 @@ public class CompanyProfileFragment extends Fragment {
     private HomeFragment.OnFragmentInteractionListener mListener;
 
     private DatabaseHelper databaseHelper;
+    boolean editable = false;
 
     public CompanyProfileFragment() {
         // Required empty public constructor
@@ -35,15 +39,41 @@ public class CompanyProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_company_profile, container, false);
 
-        EditText nameText = view.findViewById(R.id.companyNameInput);
-        EditText descriptionText = view.findViewById(R.id.companyDescriptionInput);
+        final EditText nameText = view.findViewById(R.id.companyNameInput);
+        final EditText descriptionText = view.findViewById(R.id.companyDescriptionInput);
+        final Button editButton = view.findViewById(R.id.editButton);
 
-        String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
+
+        final String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
         Cursor data = databaseHelper.getCompanyProfile(email);
         data.moveToFirst();
 
         nameText.setText(data.getString(0));
         descriptionText.setText(data.getString(1));
+
+        editButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                if (!editable) {
+                    nameText.setEnabled(true);
+                    descriptionText.setEnabled(true);
+                    editButton.setText("Save");
+                    editable = true;
+                }
+                else {
+                    nameText.setEnabled(false);
+                    descriptionText.setEnabled(false);
+                    editButton.setText("Edit");
+                    databaseHelper.updateCompany(email, nameText.getText().toString(), descriptionText.getText().toString());
+                    editable = false;
+
+                    Cursor thing = databaseHelper.getCompanyProfile(email);
+                    thing.moveToFirst();
+                    thing.close();
+                }
+
+            }
+
+        });
 
         return view;
 

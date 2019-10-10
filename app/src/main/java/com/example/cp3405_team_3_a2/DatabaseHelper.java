@@ -191,4 +191,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
+    public void updateCompany(String email, String name, String description){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues companyValues = new ContentValues();
+        companyValues.put("COMPANY_NAME", name);
+        companyValues.put("COMPANY_DESCRIPTION", description);
+        db.update("COMPANY",  companyValues, "EMAIL = " + "\'" + email + "\'", null);
+    }
 }
