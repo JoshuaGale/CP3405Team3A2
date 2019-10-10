@@ -43,7 +43,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     void insertStudent(String email, String password, int userType,
                               String qualifications, String academicHistory,
                               String firstName, String lastName, String jobInterests,
-                              boolean locationVisibility, String interestedLocation){
+                              boolean locationVisibility, String interestedLocation,
+                       String gitHubLink, String linkedInLink){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues userValues = new ContentValues();
         ContentValues personValues = new ContentValues();
@@ -60,6 +61,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         studentValues.put("JOB_INTERESTS", jobInterests);
         studentValues.put("LOCATION_VISIBILITY", locationVisibility);
         studentValues.put("INTERESTED_LOCATION", interestedLocation);
+        studentValues.put("GITHUB_LINK", gitHubLink);
+        studentValues.put("LINKEDIN_LINK", linkedInLink);
 
         db.insert("USER", null, userValues);
         db.insert("PERSON", null, personValues);

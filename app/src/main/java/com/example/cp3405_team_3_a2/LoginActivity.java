@@ -24,7 +24,12 @@ public class LoginActivity extends AppCompatActivity {
         databaseHelper = new DatabaseHelper(App.getContext());
         databaseHelper.insertStudent("joshua", "yeaboi",
                 0, "nothing", "zilch", "joshua",
-                "gale", "nada", false, "nowhere");
+                "gale", "nada", false, "nowhere",
+                "https://github.com/JoshuaGale", "https://www.linkedin.com/in/joshua-j-gale/");
+        databaseHelper.insertStudent("thomas", "yeet",
+                0, "nothing", "zilch", "thomas",
+                "napier", "something", true, "nowhere",
+                "https://github.com/thomasnapier", "https://www.linkedin.com/in/thomas-napier-466b6a170/");
         databaseHelper.insertStaff("lindsay", "pog", 1, "IT Honours",
                 "Academic for 25 years", "Lindsay",
                 "Ward", "Lecturer at JCU");

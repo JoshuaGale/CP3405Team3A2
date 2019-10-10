@@ -52,33 +52,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="150dp"
-                    android:text="Name: "
-                    android:textSize="25sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:layout_width="340dp"
-                    android:layout_height="47dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="184dp"
-                    android:layout_marginEnd="32dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/student_profile_name">
-
-                </EditText>
-
-                <TextView
-                    android:id="@+id/externalLinksHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
                     android:layout_marginTop="250dp"
-                    android:text="External links:"
+                    android:text="Name: "
                     android:textSize="25sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -93,9 +68,34 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/student_profile_links">
+                    android:id="@+id/student_profile_name">
 
                 </EditText>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginTop="172dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/linkedInImage"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/linkedinlogo" />
+
+                    <ImageView
+                        android:id="@+id/githubImage"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/githublogo" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/jobInterestsHeader"
@@ -172,30 +172,12 @@
 
                 </EditText>
 
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/appCompatSpinner"
-                    android:layout_width="46dp"
-                    android:layout_height="25dp"
-                    android:layout_marginEnd="94dp"
-                    app:layout_constraintEnd_toStartOf="@+id/profilePic"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                </androidx.appcompat.widget.AppCompatSpinner>
-
-                <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toStartOf="@+id/appCompatSpinner"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <TextView
                     android:id="@+id/interestedLocationHeader"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="850dp"
+                    android:layout_marginTop="650dp"
                     android:text="Interested Location:"
                     android:textSize="25sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -205,7 +187,7 @@
                     android:layout_width="340dp"
                     android:layout_height="47dp"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="884dp"
+                    android:layout_marginTop="684dp"
                     android:layout_marginBottom="20dp"
                     android:layout_marginEnd="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -214,6 +196,38 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:id="@+id/student_profile_interested_location"/>
 
+                <TextView
+                    android:id="@+id/locationVisibilityHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="750dp"
+                    android:text="Location Visibility"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="788dp"
+                    android:layout_marginStart="32dp"
+                    android:paddingBottom="80dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Allow my location to be visible to others" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/locationVisibilityCheckBox"/>
+
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
