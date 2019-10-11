@@ -47,9 +47,9 @@ public class StaffProfileFragment extends Fragment {
         Cursor data = databaseHelper.getStaffProfile(email);
         data.moveToFirst();
 
-        String fullName = data.getString(2) + " " + data.getString(3);
+        String fullName = data.getString(2);
         nameText.setText(fullName);
-        jobPositionText.setText(data.getString(4));
+        jobPositionText.setText(data.getString(3));
         qualificationsText.setText(data.getString(0));
         academicHistoryText.setText(data.getString(1));
 
