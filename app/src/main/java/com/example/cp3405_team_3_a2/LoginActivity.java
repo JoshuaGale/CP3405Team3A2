@@ -23,16 +23,13 @@ public class LoginActivity extends AppCompatActivity {
         App.getContext().deleteDatabase("helper");
         databaseHelper = new DatabaseHelper(App.getContext());
         databaseHelper.insertStudent("joshua", "yeaboi",
-                0, "nothing", "zilch", "joshua",
-                "gale", "nada", false, "nowhere",
+                0, "nothing", "zilch", "joshua gale", "nada", false, "nowhere",
                 "https://github.com/JoshuaGale", "https://www.linkedin.com/in/joshua-j-gale/");
         databaseHelper.insertStudent("thomas", "yeet",
-                0, "nothing", "zilch", "thomas",
-                "napier", "something", true, "nowhere",
+                0, "nothing", "zilch", "thomas napier", "something", true, "nowhere",
                 "https://github.com/thomasnapier", "https://www.linkedin.com/in/thomas-napier-466b6a170/");
         databaseHelper.insertStaff("lindsay", "pog", 1, "IT Honours",
-                "Academic for 25 years", "Lindsay",
-                "Ward", "Lecturer at JCU");
+                "Academic for 25 years", "Lindsay Ward", "Lecturer at JCU");
         databaseHelper.insertCompany("google", "ezclap", 2,
                 "Google", "We are google, give us your data");
         long unixTime = System.currentTimeMillis() / 1000L;
