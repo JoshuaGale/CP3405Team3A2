@@ -2,11 +2,13 @@ package com.example.cp3405_team_3_a2;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,15 +40,32 @@ public class StaffProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_staff_profile, container, false);
 
+        //set editText fields non-editable on creation
         final EditText nameText = view.findViewById(R.id.nameInputField);
+        nameText.setTag(nameText.getKeyListener());
+        nameText.setKeyListener(null);
+
         final EditText jobPositionText = view.findViewById(R.id.jobPositionInput);
+        jobPositionText.setTag(jobPositionText.getKeyListener());
+        jobPositionText.setKeyListener(null);
+
         final EditText qualificationsText = view.findViewById(R.id.qualificationsInput);
+        qualificationsText.setTag(qualificationsText.getKeyListener());
+        qualificationsText.setKeyListener(null);
+
         final EditText academicHistoryText = view.findViewById(R.id.academicHistoryInput);
+        academicHistoryText.setTag(academicHistoryText.getKeyListener());
+        academicHistoryText.setKeyListener(null);
+
         final Button editButton = view.findViewById(R.id.editButton);
         final String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
         Cursor data = databaseHelper.getStaffProfile(email);
         data.moveToFirst();
 
+        //get original edittext background drawable
+        final Drawable originalBackground = nameText.getBackground();
+
+        //set profile fields from the database
         String fullName = data.getString(2);
         nameText.setText(fullName);
         jobPositionText.setText(data.getString(3));
@@ -56,32 +75,52 @@ public class StaffProfileFragment extends Fragment {
         editButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 if (!editable) {
-                    nameText.setEnabled(true);
-                    jobPositionText.setEnabled(true);
-                    qualificationsText.setEnabled(true);
-                    academicHistoryText.setEnabled(true);
-                    editButton.setText("Save");
+                    //get drawable from resource files
+                    Drawable drawable = getResources().getDrawable(android.R.drawable.editbox_background);
+                    editButton.setText("SAVE");
+
+                    //set fields editable
+                    nameText.setKeyListener((KeyListener) nameText.getTag());
+                    nameText.setBackground(drawable);
+
+                    jobPositionText.setKeyListener((KeyListener) jobPositionText.getTag());
+                    jobPositionText.setBackground(drawable);
+
+                    qualificationsText.setKeyListener((KeyListener) qualificationsText.getTag());
+                    qualificationsText.setBackground(drawable);
+
+                    academicHistoryText.setKeyListener((KeyListener) academicHistoryText.getTag());
+                    academicHistoryText.setBackground(drawable);
+
                     editable = true;
                 }
                 else {
-                    nameText.setEnabled(false);
-                    jobPositionText.setEnabled(false);
-                    qualificationsText.setEnabled(false);
-                    academicHistoryText.setEnabled(false);
-                    editButton.setText("Edit");
-                    databaseHelper.updateStaff(email, nameText.getText().toString(), jobPositionText.getText().toString(), qualificationsText.getText().toString(), academicHistoryText.getText().toString());
+                    editButton.setText("EDIT");
+                    //set fields non-editable
+                    nameText.setKeyListener(null);
+                    nameText.setBackground(originalBackground);
+
+                    jobPositionText.setKeyListener(null);
+                    jobPositionText.setBackground(originalBackground);
+
+                    qualificationsText.setKeyListener(null);
+                    qualificationsText.setBackground(originalBackground);
+
+                    academicHistoryText.setKeyListener(null);
+                    academicHistoryText.setBackground(originalBackground);
+
+                    academicHistoryText.setKeyListener(null);
+                    academicHistoryText.setBackground(originalBackground);
+                    databaseHelper.updateStaff(email, nameText.getText().toString(),
+                            jobPositionText.getText().toString(), qualificationsText.getText().toString(),
+                            academicHistoryText.getText().toString());
+
                     editable = false;
-
                 }
-
             }
 
         });
-
-
         return view;
-
-
     }
 
     @Override

@@ -2,12 +2,14 @@ package com.example.cp3405_team_3_a2;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.text.InputType;
+import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,10 +41,19 @@ public class CompanyProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_company_profile, container, false);
 
+        //set editText fields non-editable on creation
         final EditText nameText = view.findViewById(R.id.companyNameInput);
+        nameText.setTag(nameText.getKeyListener());
+        nameText.setKeyListener(null);
+
         final EditText descriptionText = view.findViewById(R.id.companyDescriptionInput);
+        descriptionText.setTag(descriptionText.getKeyListener());
+        descriptionText.setKeyListener(null);
+
         final Button editButton = view.findViewById(R.id.editButton);
 
+        //get original edittext background drawable
+        final Drawable originalBackground = nameText.getBackground();
 
         final String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
         Cursor data = databaseHelper.getCompanyProfile(email);
@@ -54,26 +65,35 @@ public class CompanyProfileFragment extends Fragment {
         editButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 if (!editable) {
-                    nameText.setEnabled(true);
-                    descriptionText.setEnabled(true);
-                    editButton.setText("Save");
+                    Drawable drawable = getResources().getDrawable(android.R.drawable.editbox_background);
+                    editButton.setText("SAVE");
+
+                    //set fields editable
+                    nameText.setKeyListener((KeyListener) nameText.getTag());
+                    nameText.setBackground(drawable);
+
+                    descriptionText.setKeyListener((KeyListener) descriptionText.getTag());
+                    descriptionText.setBackground(drawable);
+
                     editable = true;
                 }
                 else {
-                    nameText.setEnabled(false);
-                    descriptionText.setEnabled(false);
-                    editButton.setText("Edit");
+                    editButton.setText("EDIT");
+                    //set fields non-editable
+                    nameText.setKeyListener(null);
+                    nameText.setBackground(originalBackground);
+
+                    descriptionText.setKeyListener(null);
+                    descriptionText.setBackground(originalBackground);
+
                     databaseHelper.updateCompany(email, nameText.getText().toString(), descriptionText.getText().toString());
+
                     editable = false;
-
                 }
-
             }
 
         });
-
         return view;
-
     }
 
     @Override
