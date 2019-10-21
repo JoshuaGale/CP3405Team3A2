@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         databaseHelper.insertCompany("google", "ezclap", 2,
                 "Google", "We are google, give us your data");
         long unixTime = System.currentTimeMillis() / 1000L;
+        databaseHelper.insertJob("google", "top meme", "you make memes", "computers", "100", (unixTime + 10000L),unixTime);
         databaseHelper.insertRecommendation("joshua", "Tom", 1, unixTime);
         databaseHelper.insertRecommendation("joshua", "James", 2, unixTime);
 

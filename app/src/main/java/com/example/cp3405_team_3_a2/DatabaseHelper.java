@@ -26,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS STUDENT (EMAIL TEXT PRIMARY KEY,  JOB_INTERESTS TEXT, LOCATION_VISIBILITY BOOLEAN, INTERESTED_LOCATION TEXT, GITHUB_LINK TEXT, LINKEDIN_LINK TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS STAFF (EMAIL TEXT PRIMARY KEY,  JOB_POSITION TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS RECOMMENDATION (RECOMMENDATION_ID INTEGER PRIMARY KEY AUTOINCREMENT,  STUDENT_RECOMMENDED TEXT, RECOMMENDED_BY TEXT, JOB INTEGER, DATE_CREATED INTEGER)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS JOB (JOB_ID INTEGER PRIMARY KEY AUTOINCREMENT,  COMPANY TEXT, JOB_TITLE TEXT, JOB_DESCRIPTION TEXT, JOB_TYPE TEXT, JOB_SALARY TEXT, JOB_DUE_DATE TEXT, DATE_CREATED INTEGER)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS JOB (JOB_ID INTEGER PRIMARY KEY AUTOINCREMENT,  COMPANY TEXT, JOB_TITLE TEXT, JOB_DESCRIPTION TEXT, JOB_TYPE TEXT, JOB_SALARY TEXT, JOB_DUE_DATE INTEGER, DATE_CREATED INTEGER)");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -121,6 +121,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("RECOMMENDATION", null, recommendationValues);
     }
 
+    void insertJob(String company, String jobTitle, String jobDescription, String jobType, String jobSalary, Long jobDueDate, Long dateCreated){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues jobValues = new ContentValues();
+        jobValues.put("COMPANY", company);
+        jobValues.put("JOB_TITLE", jobTitle);
+        jobValues.put("JOB_DESCRIPTION", jobDescription);
+        jobValues.put("JOB_TYPE", jobType);
+        jobValues.put("JOB_SALARY", jobSalary);
+        jobValues.put("JOB_DUE_DATE", jobDueDate);
+        jobValues.put("DATE_CREATED", dateCreated);
+
+        db.insert("JOB", null, jobValues);
+    }
+
     public int getUserType(String email){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT USER_TYPE FROM USER WHERE EMAIL = " + "\'" + email + "\'";
@@ -171,6 +185,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getCompanyProfile(String email){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT COMPANY_NAME, COMPANY_DESCRIPTION FROM COMPANY WHERE EMAIL = " + "\'" + email + "\'";
+        return db.rawQuery(query, null);
+    }
+
+    public Cursor getJobDetailsCompany(String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION," +
+                " j.JOB_TYPE, j.JOB_SALARY, j.JOB_DUE_DATE, j.DATE_CREATED, r.STUDENT_RECOMMENDED," +
+                " r.RECOMMENDED_BY FROM JOB j, RECOMMENDATION r WHERE j.JOB_ID = r.JOB AND j.COMPANY = " + "\'" + email + "\'";
         return db.rawQuery(query, null);
     }
 
