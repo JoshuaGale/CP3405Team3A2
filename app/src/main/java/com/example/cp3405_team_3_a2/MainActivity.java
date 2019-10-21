@@ -29,7 +29,12 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     StudentProfileFragment studentProfileFragment = new StudentProfileFragment();
     StaffProfileFragment staffProfileFragment = new StaffProfileFragment();
     CompanyProfileFragment companyProfileFragment = new CompanyProfileFragment();
-    Fragment[] fragments = {homeFragment, studentProfileFragment, staffProfileFragment, companyProfileFragment};
+    CompanyJobDetailsFragment companyJobDetailsFragment = new CompanyJobDetailsFragment();
+    CompanyJobListingFragment companyJobListingFragment = new CompanyJobListingFragment();
+    StaffStudentListFragment staffStudentListFragment = new StaffStudentListFragment();
+    StudentJobListingFragment studentJobListingFragment = new StudentJobListingFragment();
+    Fragment[] fragments = {homeFragment, studentProfileFragment, staffProfileFragment, companyProfileFragment,
+            studentJobListingFragment, companyJobListingFragment, companyJobDetailsFragment, staffStudentListFragment};
 
 
     //home stuff
@@ -54,6 +59,17 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
                     case R.id.jobButton:
                         homeHeading.setText("Job");
+                        switch (databaseHelper.getUserType(email)){
+                            case 0:
+                                changeFragment(4);
+                                break;
+                            case 1:
+                                changeFragment(5);
+                                break;
+                            case 2:
+                                changeFragment(5);
+                                break;
+                        }
                         break;
 
                     case R.id.profileButton:
