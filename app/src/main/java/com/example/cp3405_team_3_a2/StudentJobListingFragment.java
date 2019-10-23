@@ -43,7 +43,7 @@ public class StudentJobListingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_student_job_listing, container, false);
 
         String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
-        Cursor data = databaseHelper.getJobDetails(email, "student");
+        Cursor data = databaseHelper.getJobDetails(email, 0);
         ArrayList<String> jobNameArray = new ArrayList<>();
         ArrayList<String> recommendedByArray = new ArrayList<>();
 

@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
    }
 
     public void populateStudentListView() {
-        Cursor data = databaseHelper.getUserRecommendations(email);
+        Cursor data = databaseHelper.getUserRecommendations(email, 0);
         ArrayList<String> jobNameArray = new ArrayList<>();
         ArrayList<String> recommendationArray = new ArrayList<>();
         ArrayList<String> notificationTypeArray = new ArrayList<>();

@@ -146,9 +146,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return intAnswer;
     }
 
-    Cursor getUserRecommendations(String email){
+    Cursor getUserRecommendations(String email, int userType){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM RECOMMENDATION WHERE STUDENT_RECOMMENDED = " + "\'" + email + "\'" + " ORDER BY DATE_CREATED DESC";
+        String query;
+        switch (userType){
+            case 0:
+                query = "SELECT * FROM RECOMMENDATION WHERE STUDENT_RECOMMENDED = " + "\'" + email + "\'" + " ORDER BY DATE_CREATED DESC";
+                break;
+            case 1:
+                query = "SELECT * FROM RECOMMENDATION r, JOB j WHERE j.JOB_ID = r.JOB AND RECOMMENDED_BY != " + "\'" + email + "\'" + " ORDER BY DATE_CREATED DESC";
+                break;
+            case 2:
+                query = "SELECT * FROM RECOMMENDATION r, JOB j WHERE j.JOB_ID = r.JOB AND j.COMPANY = " + "\'" + email + "\'" + " ORDER BY DATE_CREATED DESC";
+                break;
+            default:
+                query = "";
+                break;
+
+        }
         return db.rawQuery(query, null);
     }
 
@@ -188,23 +203,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
-    public Cursor getJobDetails(String email, String userType){
+    public Cursor getJobDetails(String email, int userType){
         SQLiteDatabase db = this.getWritableDatabase();
         String query;
         switch (userType){
-            case "student":
+            case 0:
                 query = "SELECT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION," +
                         " j.JOB_TYPE, j.JOB_SALARY, j.JOB_DUE_DATE, j.DATE_CREATED, r.STUDENT_RECOMMENDED," +
                         " r.RECOMMENDED_BY FROM JOB j, RECOMMENDATION r WHERE j.JOB_ID = r.JOB AND r.STUDENT_RECOMMENDED = " + "\'" + email + "\'";
 
                 break;
-            case "lecturer":
+            case 1:
                 query = "SELECT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION," +
                         " j.JOB_TYPE, j.JOB_SALARY, j.JOB_DUE_DATE, j.DATE_CREATED, r.STUDENT_RECOMMENDED," +
                         " r.RECOMMENDED_BY FROM JOB j, RECOMMENDATION r WHERE j.JOB_ID = r.JOB AND r.RECOMMENDED_BY = " + "\'" + email + "\'";
 
                 break;
-            case "company":
+            case 2:
                 query = "SELECT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION," +
                         " j.JOB_TYPE, j.JOB_SALARY, j.JOB_DUE_DATE, j.DATE_CREATED, r.STUDENT_RECOMMENDED," +
                         " r.RECOMMENDED_BY FROM JOB j, RECOMMENDATION r WHERE j.JOB_ID = r.JOB AND j.COMPANY = " + "\'" + email + "\'";

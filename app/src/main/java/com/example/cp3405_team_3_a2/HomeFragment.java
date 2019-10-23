@@ -40,16 +40,28 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
-        Cursor data = databaseHelper.getUserRecommendations(email);
+        int userType = databaseHelper.getUserType(email);
+        Cursor data = databaseHelper.getUserRecommendations(email, userType);
         ArrayList<String> jobNameArray = new ArrayList<>();
         ArrayList<String> recommendationArray = new ArrayList<>();
         ArrayList<String> notificationTypeArray = new ArrayList<>();
 
-        while(data.moveToNext()){
-            jobNameArray.add(data.getString(1));
-            recommendationArray.add(data.getString(2));
-            notificationTypeArray.add(data.getString(3));
+        if (userType == 0 || userType == 2){
+            while(data.moveToNext()){
+                jobNameArray.add(data.getString(1));
+                recommendationArray.add(data.getString(2));
+                notificationTypeArray.add(data.getString(3));
 
+            }
+        }
+
+        else {
+            while(data.moveToNext()){
+                jobNameArray.add(data.getString(1));
+                recommendationArray.add("");
+                notificationTypeArray.add(data.getString(3));
+
+            }
         }
 
         String[] nameArray = jobNameArray.toArray(new String[0]);
