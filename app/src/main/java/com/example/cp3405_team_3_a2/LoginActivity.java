@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         long unixTime = System.currentTimeMillis() / 1000L;
         databaseHelper.insertJob("google", "top meme", "you make memes", "computers", "100", (unixTime + 10000L),unixTime);
         databaseHelper.insertRecommendation("joshua", "Tom", 1, unixTime);
-        databaseHelper.insertRecommendation("joshua", "James", 2, unixTime);
+        databaseHelper.insertRecommendation("joshua", "James", 0, unixTime);
 
         errorText = findViewById(R.id.error_text);
         emailText = findViewById(R.id.email_text_field);
