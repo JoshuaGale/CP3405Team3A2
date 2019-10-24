@@ -56,41 +56,37 @@
                 android:layout_width="340dp"
                 android:layout_height="47dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="184dp"
                 android:layout_marginEnd="32dp"
                 android:inputType="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="Autofill,LabelFor"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/companyNameHeader"
+                tools:ignore="Autofill,LabelFor" />
 
             <TextView
                 android:id="@+id/companyDescriptionHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="250dp"
                 android:text="@string/company_description"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/companyNameInput" />
 
             <EditText
                 android:id="@+id/companyDescriptionInput"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="284dp"
                 android:layout_marginEnd="32dp"
                 android:inputType="textMultiLine"
-                android:minLines="1"
                 android:maxLines="8"
+                android:minLines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/companyDescriptionHeader"
                 tools:ignore="Autofill,LabelFor" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

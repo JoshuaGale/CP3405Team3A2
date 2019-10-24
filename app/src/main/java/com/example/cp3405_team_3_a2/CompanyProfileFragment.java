@@ -65,7 +65,7 @@ public class CompanyProfileFragment extends Fragment {
         editButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 if (!editable) {
-                    Drawable drawable = getResources().getDrawable(android.R.drawable.editbox_background);
+                    Drawable drawable = getResources().getDrawable(R.drawable.edit_text_border);
                     editButton.setText("SAVE");
 
                     //set fields editable

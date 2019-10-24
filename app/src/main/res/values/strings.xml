@@ -29,7 +29,6 @@
     <string name="profile_pic_desc">User profile Picture</string>
     <string name="qualifications">Qualifications:</string>
     <string name="Company_profile_pic_desc">Company Profile Picture</string>
-    <string name="name_with_colon">Name:</string>
     <string name="external_links_with_colon">External links:</string>
     <string name="job_interests">Job interests:</string>
     <string name="qualifications_with_colon">Qualifications:</string>
@@ -38,6 +37,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="name_with_colon">Name:</string>
+    <string name="linkedin_logo">LinkedIn Logo</string>
+    <string name="github_logo">github logo</string>
+    <string name="job_interests_with_colon">Job interests:</string>
 
 
 </resources>

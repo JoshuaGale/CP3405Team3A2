@@ -76,7 +76,7 @@ public class StaffProfileFragment extends Fragment {
             public void onClick(View v){
                 if (!editable) {
                     //get drawable from resource files
-                    Drawable drawable = getResources().getDrawable(android.R.drawable.editbox_background);
+                    Drawable drawable = getResources().getDrawable(R.drawable.edit_text_border);
                     editButton.setText("SAVE");
 
                     //set fields editable

@@ -26,6 +26,81 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="40sp">
 
+                <TextView
+                    android:id="@+id/nameHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="250dp"
+                    android:text="Name: "
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <EditText
+                    android:id="@+id/student_profile_name"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLines="4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nameHeader">
+
+                </EditText>
+
+                <TextView
+                    android:id="@+id/jobInterestsHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="Job interests:"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/student_profile_name" />
+
+                <TextView
+                    android:id="@+id/academicHistoryHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="Qualifications:"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/student_profile_job_interests" />
+
+                <TextView
+                    android:id="@+id/academicHistoryHeaderHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="Academic History:"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/student_profile_qualifications" />
+
+                <TextView
+                    android:id="@+id/interestedLocationHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="Interested Location:"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/student_profile_academic_history" />
+
+                <TextView
+                    android:id="@+id/locationVisibilityHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="Location Visibility"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/student_profile_interested_location" />
+
                 <Button
                     android:id="@+id/editButton"
                     android:layout_width="wrap_content"
@@ -35,6 +110,67 @@
                     android:text="@string/edit"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+
+                <EditText
+                    android:id="@+id/student_profile_job_interests"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:maxLines="4"
+                    android:inputType="textCapSentences|textMultiLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/jobInterestsHeader">
+
+                </EditText>
+
+                <EditText
+                    android:id="@+id/student_profile_qualifications"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:inputType="textCapSentences|textMultiLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/academicHistoryHeader"
+                    android:maxLines="4">
+
+                </EditText>
+
+                <EditText
+                    android:id="@+id/student_profile_academic_history"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:inputType="textCapSentences|textMultiLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/academicHistoryHeaderHeader"
+                    android:maxLines="4"
+                    >
+
+                </EditText>
+
+                <EditText
+                    android:id="@+id/student_profile_interested_location"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:inputType="textCapSentences|textMultiLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/interestedLocationHeader"
+                    android:maxLines="4"
+                    />
 
                 <ImageView
                     android:id="@+id/profilePic"
@@ -47,37 +183,12 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <TextView
-                    android:id="@+id/nameHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="250dp"
-                    android:text="Name: "
-                    android:textSize="25sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:layout_width="340dp"
-                    android:layout_height="47dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="284dp"
-                    android:layout_marginEnd="32dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/student_profile_name">
-
-                </EditText>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
                     android:layout_marginTop="172dp"
+                    android:layout_marginEnd="32dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
@@ -97,135 +208,24 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/jobInterestsHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="350dp"
-                    android:text="Job interests:"
-                    android:textSize="25sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:layout_width="340dp"
-                    android:layout_height="47dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="384dp"
-                    android:layout_marginEnd="32dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/student_profile_job_interests">
-
-                </EditText>
-
-                <TextView
-                    android:id="@+id/academicHistoryHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="450dp"
-                    android:text="Qualifications:"
-                    android:textSize="25sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:layout_width="340dp"
-                    android:layout_height="47dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="484dp"
-                    android:layout_marginEnd="32dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/student_profile_qualifications">
-
-                </EditText>
-
-                <TextView
-                    android:id="@+id/academicHistoryHeaderHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="550dp"
-                    android:text="Academic History:"
-                    android:textSize="25sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:layout_width="340dp"
-                    android:layout_height="47dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="584dp"
-                    android:layout_marginEnd="32dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/student_profile_academic_history">
-
-                </EditText>
-
-                <TextView
-                    android:id="@+id/interestedLocationHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="650dp"
-                    android:text="Interested Location:"
-                    android:textSize="25sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:layout_width="340dp"
-                    android:layout_height="47dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="684dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginEnd="32dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/student_profile_interested_location"/>
-
-                <TextView
-                    android:id="@+id/locationVisibilityHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="750dp"
-                    android:text="Location Visibility"
-                    android:textSize="25sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="788dp"
                     android:layout_marginStart="32dp"
-                    android:paddingBottom="80dp"
                     android:orientation="horizontal"
+                    android:paddingBottom="80dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@+id/locationVisibilityHeader">
+
+                    <CheckBox
+                        android:id="@+id/locationVisibilityCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Allow my location to be visible to others" />
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/locationVisibilityCheckBox"/>
 
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

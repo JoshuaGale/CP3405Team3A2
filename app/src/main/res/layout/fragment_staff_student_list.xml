@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".StaffStudentListFragment">
+    tools:context=".StaffStudentListFragment"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp">
 
 
     <LinearLayout
@@ -18,7 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerLayout"/>
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+        style="@style/searchStyle"
+        />
 
     <ScrollView
         android:id="@+id/listOfStudentsScrollView"

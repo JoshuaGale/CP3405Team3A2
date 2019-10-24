@@ -110,7 +110,7 @@ public class StudentProfileFragment extends Fragment {
                 if(!editable){
                     editButton.setText("SAVE");
                     //set fields editable
-                    Drawable drawable = getResources().getDrawable(android.R.drawable.editbox_background);
+                    Drawable drawable = getResources().getDrawable(R.drawable.edit_text_border);
 
                     nameText.setKeyListener((KeyListener) nameText.getTag());
                     nameText.setBackground(drawable);
@@ -149,12 +149,10 @@ public class StudentProfileFragment extends Fragment {
                     interestedLocationText.setKeyListener(null);
                     interestedLocationText.setBackground(originalBackground);
 
-                    Log.i("boi,", Boolean.toString(locationVisibilityCheckBox.isChecked()));
-
                     databaseHelper.updateStudent(email, qualificationsText.getText().toString(),
                             academicHistoryText.getText().toString(), nameText.getText().toString(),
                             jobInterestsText.getText().toString(), locationVisibilityCheckBox.isChecked(),
-                            interestedLocationText.getText().toString(), "", "");
+                            interestedLocationText.getText().toString(), gitHubLink, linkedInLink);
 
                     locationVisibilityCheckBox.setEnabled(false);
 

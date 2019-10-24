@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                         break;
 
                     case R.id.jobButton:
-                        homeHeading.setText("Job");
+                        homeHeading.setText("Jobs");
                         switch (databaseHelper.getUserType(email)){
                             case 0:
                                 changeFragment(4);
