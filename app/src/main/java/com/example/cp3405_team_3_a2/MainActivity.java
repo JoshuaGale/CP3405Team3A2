@@ -29,9 +29,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     StaffStudentListFragment staffStudentListFragment = new StaffStudentListFragment();
     StudentJobListingFragment studentJobListingFragment = new StudentJobListingFragment();
     CompanyAddNewJobFragment companyAddNewJobFragment = new CompanyAddNewJobFragment();
+    StaffJobListingFragment staffJobListingFragment = new StaffJobListingFragment();
     Fragment[] fragments = {homeFragment, studentProfileFragment, staffProfileFragment, companyProfileFragment,
             studentJobListingFragment, companyJobListingFragment, companyJobDetailsFragment, staffStudentListFragment
-            ,companyAddNewJobFragment};
+            ,companyAddNewJobFragment, staffJobListingFragment};
 
 
     //home stuff
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
                                 changeFragment(4);
                                 break;
                             case 1:
-                                changeFragment(5);
+                                changeFragment(9);
                                 break;
                             case 2:
                                 changeFragment(5);
