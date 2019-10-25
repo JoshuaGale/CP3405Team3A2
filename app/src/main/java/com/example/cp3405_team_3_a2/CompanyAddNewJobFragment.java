@@ -43,11 +43,31 @@ public class CompanyAddNewJobFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_company_add_new_job, container, false);
         Context con =  getActivity();
 
-        Button createNewJob = view.findViewById(R.id.newJobListButton);
+        final EditText jobTitle = view.findViewById(R.id.editText3);
+        final EditText location = view.findViewById(R.id.editText4);
+        final EditText type = view.findViewById(R.id.editText5);
+        final EditText salary = view.findViewById(R.id.editText6);
+        final EditText dateDue = view.findViewById(R.id.editText7);
+        final EditText description = view.findViewById(R.id.editText8);
+
+        final long unixTime = System.currentTimeMillis() / 1000L;
+
+        Button createNewJob = view.findViewById(R.id.saveJobListButton);
         createNewJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(8);
+                //save information to database
+                databaseHelper.insertJob("google", jobTitle.toString(), description.toString(), type.toString(), salary.toString(), Long.parseLong(dateDue.toString()), unixTime);
+
+                ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(5);
+            }
+        });
+
+        Button cancel = view.findViewById(R.id.cancelNewJobListButton);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(5);
             }
         });
 
