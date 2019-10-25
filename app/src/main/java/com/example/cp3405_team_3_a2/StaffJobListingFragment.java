@@ -42,8 +42,13 @@ public class StaffJobListingFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_staff_job_listing, container, false);
 
+        ListView listView = view.findViewById(R.id.jobList);
+        Button newButton = view.findViewById(R.id.new_button);
+        Button compleatedButton = view.findViewById(R.id.completed_button);
+
+
         String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
-        Cursor data = databaseHelper.getJobDetails(email, 1);
+        Cursor data = databaseHelper.getJobDetails(email, 3);
         ArrayList<String> jobNameArray = new ArrayList<>();
         ArrayList<String> jobDescriptionArray = new ArrayList<>();
 
@@ -55,10 +60,8 @@ public class StaffJobListingFragment extends Fragment {
         String[] nameArray = jobNameArray.toArray(new String[0]);
         String[] infoArray = jobDescriptionArray.toArray(new String[0]);
         Context con =  getActivity();
-        JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, infoArray);
-        ListView listView = view.findViewById(R.id.jobList);
+        final StaffAdapter jobListAdapter = new StaffAdapter((MainActivity)con, nameArray, infoArray);
         listView.setAdapter(jobListAdapter);
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -67,7 +70,39 @@ public class StaffJobListingFragment extends Fragment {
             }
         });
 
+        newButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateListView(3);
+            }
+        });
+
+        compleatedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateListView(1);
+            }
+        });
         return view;
+    }
+
+    public void updateListView (int listType){
+        String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
+        Cursor data = databaseHelper.getJobDetails(email, listType);
+        ArrayList<String> jobNameArray = new ArrayList<>();
+        ArrayList<String> jobDescriptionArray = new ArrayList<>();
+
+        while(data.moveToNext()){
+            jobNameArray.add(data.getString(1));
+            jobDescriptionArray.add(data.getString(2));
+        }
+
+        String[] nameArray = jobNameArray.toArray(new String[0]);
+        String[] infoArray = jobDescriptionArray.toArray(new String[0]);
+        Context con =  getActivity();
+        final StaffAdapter jobListAdapter = new StaffAdapter((MainActivity)con, nameArray, infoArray);
+        ListView listView = getView().findViewById(R.id.jobList);
+        listView.setAdapter(jobListAdapter);
     }
 
     @Override

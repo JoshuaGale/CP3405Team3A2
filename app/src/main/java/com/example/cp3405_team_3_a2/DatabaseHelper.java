@@ -224,6 +224,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         " j.JOB_TYPE, j.JOB_SALARY, j.JOB_DUE_DATE, j.DATE_CREATED, r.STUDENT_RECOMMENDED," +
                         " r.RECOMMENDED_BY FROM JOB j, RECOMMENDATION r WHERE j.JOB_ID = r.JOB AND j.COMPANY = " + "\'" + email + "\'";
                 break;
+            case 3:
+                query = "SELECT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION," +
+                        " j.JOB_TYPE, j.JOB_SALARY, j.JOB_DUE_DATE, j.DATE_CREATED, r.STUDENT_RECOMMENDED," +
+                        " r.RECOMMENDED_BY FROM JOB j, RECOMMENDATION r WHERE j.JOB_ID = r.JOB AND r.RECOMMENDED_BY <> " + "\'" + email + "\'";
+                break;
             default:
                 query = "";
 
