@@ -21,12 +21,12 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class CompanyJobListingFragment extends Fragment {
+public class CompanyAddNewJobFragment extends Fragment {
     private HomeFragment.OnFragmentInteractionListener mListener;
 
     private DatabaseHelper databaseHelper;
 
-    public CompanyJobListingFragment() {
+    public CompanyAddNewJobFragment() {
         // Required empty public constructor
     }
 
@@ -40,32 +40,8 @@ public class CompanyJobListingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_company_job_listing, container, false);
-
-        String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
-        Cursor data = databaseHelper.getJobDetails(email, 2);
-        ArrayList<String> jobNameArray = new ArrayList<>();
-        ArrayList<String> recommendedByArray = new ArrayList<>();
-
-        while(data.moveToNext()){
-            jobNameArray.add(data.getString(1));
-            recommendedByArray.add(data.getString(8));
-        }
-
-        String[] nameArray = jobNameArray.toArray(new String[0]);
-        String[] infoArray = recommendedByArray.toArray(new String[0]);
+        View view = inflater.inflate(R.layout.fragment_company_add_new_job, container, false);
         Context con =  getActivity();
-        JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, infoArray);
-        ListView listView = view.findViewById(R.id.jobList);
-        listView.setAdapter(jobListAdapter);
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.i("bigboi", Integer.toString(i));
-            }
-        });
 
         Button createNewJob = view.findViewById(R.id.newJobListButton);
         createNewJob.setOnClickListener(new View.OnClickListener() {

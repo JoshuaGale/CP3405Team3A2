@@ -7,18 +7,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ListView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener {
     DatabaseHelper databaseHelper;
@@ -33,8 +28,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     CompanyJobListingFragment companyJobListingFragment = new CompanyJobListingFragment();
     StaffStudentListFragment staffStudentListFragment = new StaffStudentListFragment();
     StudentJobListingFragment studentJobListingFragment = new StudentJobListingFragment();
+    CompanyAddNewJobFragment companyAddNewJobFragment = new CompanyAddNewJobFragment();
     Fragment[] fragments = {homeFragment, studentProfileFragment, staffProfileFragment, companyProfileFragment,
-            studentJobListingFragment, companyJobListingFragment, companyJobDetailsFragment, staffStudentListFragment};
+            studentJobListingFragment, companyJobListingFragment, companyJobDetailsFragment, staffStudentListFragment
+            ,companyAddNewJobFragment};
 
 
     //home stuff
@@ -126,6 +123,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     public String getEmail(){
         return email;
     }
+
+
 
     @Override
     public void onFragmentInteraction(Uri uri) {
