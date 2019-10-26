@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         databaseHelper.insertJob("google", "top meme10", "you make memes", "computers", "100", "10/11/10",unixTime, "sydney");
         databaseHelper.insertJob("google", "top meme11", "you make memes", "computers", "100", "10/11/10",unixTime, "sydney");
         databaseHelper.insertJob("google", "top meme12", "you make memes", "computers", "100", "10/11/10",unixTime, "sydney");
+        databaseHelper.insertJob("google", "Graduate / Junior Developer", "Multiple entry-level positions are available to develop heterogeneous software for our award-winning enterprise storage technology. Talented graduates will be invited to join our core development team and engage in a rare opportunity to gain experience across a wide range of technologies.", "Full Time", "$80,000-100,000 p.a", "10/11/10",unixTime, "Brisbane Inner City");
         databaseHelper.insertRecommendation("joshua", "Tom", 1, unixTime);
         databaseHelper.insertRecommendation("joshua", "lindsay", 2, unixTime);
         databaseHelper.insertRecommendation("joshua", "Tom3", 3, unixTime);
@@ -58,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         databaseHelper.insertRecommendation("joshua", "Tom11", 11, unixTime);
         databaseHelper.insertRecommendation("joshua", "Tom12", 12, unixTime);
         databaseHelper.insertRecommendation("joshua", "James", 0, unixTime);
+        databaseHelper.insertRecommendation("joshua", "Lindsay", 13, unixTime);
 
         errorText = findViewById(R.id.error_text);
         emailText = findViewById(R.id.email_text_field);

@@ -10,14 +10,17 @@
 
     <style name="title">
         <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/colorText</item>
     </style>
 
     <style name="labels">
         <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorText</item>
     </style>
 
     <style name="text">
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorText</item>
     </style>
 
     <style name="hyperlinks">
@@ -36,6 +39,4 @@
         <item name="android:background">@drawable/edit_text_background</item>
         <item name="android:iconifiedByDefault">false</item>
     </style>
-
-
 </resources>

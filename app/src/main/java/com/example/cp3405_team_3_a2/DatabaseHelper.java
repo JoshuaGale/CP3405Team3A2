@@ -152,7 +152,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query;
         switch (userType){
             case 0:
-                query = "SELECT * FROM RECOMMENDATION WHERE STUDENT_RECOMMENDED = " + "\'" + email + "\'" + " ORDER BY DATE_CREATED DESC";
+                query = "SELECT * FROM RECOMMENDATION r, JOB j WHERE j.JOB_ID = r.JOB AND STUDENT_RECOMMENDED = " + "\'" + email + "\'" + " ORDER BY DATE_CREATED DESC";
                 break;
             case 1:
                 query = "SELECT * FROM RECOMMENDATION r, JOB j WHERE j.JOB_ID = r.JOB AND RECOMMENDED_BY != " + "\'" + email + "\'" + " ORDER BY DATE_CREATED DESC";

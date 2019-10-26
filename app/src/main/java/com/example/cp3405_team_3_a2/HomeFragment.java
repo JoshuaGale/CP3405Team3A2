@@ -48,9 +48,9 @@ public class HomeFragment extends Fragment {
 
         if (userType == 0 || userType == 2){
             while(data.moveToNext()){
-                jobNameArray.add(data.getString(1));
-                recommendationArray.add(data.getString(2));
-                notificationTypeArray.add(data.getString(3));
+                jobNameArray.add("New Recommendation: " + data.getString(7) + " from " + data.getString(6));
+                recommendationArray.add("Recommended By: " + data.getString(2));
+                notificationTypeArray.add("Job Location: " + data.getString(13));
 
             }
         }
@@ -68,9 +68,9 @@ public class HomeFragment extends Fragment {
         String[] infoArray = recommendationArray.toArray(new String[0]);
         String[] typeArray = notificationTypeArray.toArray(new String[0]);
         Context con =  getActivity();
-        NotificationAdapter notificationAdapter = new NotificationAdapter((MainActivity)con, nameArray, infoArray, typeArray);
+        JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, infoArray, typeArray);
         ListView listView = view.findViewById(R.id.itemList);
-        listView.setAdapter(notificationAdapter);
+        listView.setAdapter(jobListAdapter);
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

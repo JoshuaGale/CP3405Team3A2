@@ -49,9 +49,9 @@ public class StudentJobListingFragment extends Fragment {
         ArrayList<String> jobDescriptArray = new ArrayList<>();
 
         while(data.moveToNext()){
-            jobNameArray.add(data.getString(1));
-            recommendedByArray.add(data.getString(7));
-            jobDescriptArray.add(data.getString(2));
+            jobNameArray.add("Job Title: " + data.getString(1) + " at " + data.getString(0));
+            recommendedByArray.add("Position Salary: " + data.getString(4));
+            jobDescriptArray.add("Job Description: " + data.getString(2));
         }
 
         String[] nameArray = jobNameArray.toArray(new String[0]);

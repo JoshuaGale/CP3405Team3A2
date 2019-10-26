@@ -32,7 +32,7 @@ public class JobListAdapter extends ArrayAdapter {
 
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.row, null,true);
+        View rowView=inflater.inflate(R.layout.student_job_list_row, null,true);
 
         //this code gets references to objects in the listview_row.xml file
         TextView nameTextField = rowView.findViewById(R.id.text1);

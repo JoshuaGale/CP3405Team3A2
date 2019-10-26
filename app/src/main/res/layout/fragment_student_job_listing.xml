@@ -16,13 +16,15 @@
         android:layout_weight="1"
         >
 
-        <androidx.appcompat.widget.SearchView
+        <SearchView
             android:id="@+id/jobListSearchView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20sp">
+            android:layout_marginHorizontal="20sp"
+            style="@style/searchStyle"
+            android:layout_weight="2">
 
-        </androidx.appcompat.widget.SearchView>
+        </SearchView>
 
         <Spinner
             android:id="@+id/locationSpinner"

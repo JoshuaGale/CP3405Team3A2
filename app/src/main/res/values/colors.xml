@@ -9,4 +9,5 @@
     <color name="colorNavBarBackground">#0d0d6f</color>
     <color name="colorNavFocused">#ffffff</color>
     <color name="colorNavUnfocused">#9B9797</color>
+    <color name="colorText">#000000</color>
 </resources>
