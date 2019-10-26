@@ -67,6 +67,9 @@ public class StaffJobListingFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String jobName = listView.getItemAtPosition(i).toString();
+                Cursor idData = databaseHelper.getJobID(jobName);
+                idData.moveToFirst();
+                ((MainActivity) Objects.requireNonNull(getActivity())).setJobFocus(idData.getInt(0));
                 ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(7);
 
             }

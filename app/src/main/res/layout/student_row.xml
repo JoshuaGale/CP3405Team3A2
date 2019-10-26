@@ -41,11 +41,12 @@
                 android:textSize="25sp"
                 android:id="@+id/text1"/>
 
-            <Button
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:layout_height="0dp"
                 android:text="Recommend"
+                android:textAlignment="center"
                 android:textSize="25sp"/>
         </LinearLayout>
 

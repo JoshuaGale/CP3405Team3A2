@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -44,18 +45,33 @@ public class StaffStudentListFragment extends Fragment {
         final ListView listView = view.findViewById(R.id.student_list);
 
         Cursor data = databaseHelper.getStudents();
-        ArrayList<String> jobNameArray = new ArrayList<>();
+        ArrayList<String> studentNameArray = new ArrayList<>();
+        ArrayList<String> studentEmailArray = new ArrayList<>();
 
         while(data.moveToNext()){
-            jobNameArray.add(data.getString(0));
+            studentNameArray.add(data.getString(0));
+            studentEmailArray.add(data.getString(1));
         }
 
-        String[] nameArray = jobNameArray.toArray(new String[0]);
+        String[] nameArray = studentNameArray.toArray(new String[0]);
+        final String[] emailArray = studentEmailArray.toArray(new String[0]);
         Context con =  getActivity();
 
         final StaffStudentListAdapter studentListAdapter = new StaffStudentListAdapter((MainActivity)con, nameArray);
         listView.setAdapter(studentListAdapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int jobID = ((MainActivity) Objects.requireNonNull(getActivity())).getJobFocus();
+                long unixTime = System.currentTimeMillis() / 1000L;
+                String currentEmail = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
+                String studentEmail = emailArray[i];
+                databaseHelper.insertRecommendation(studentEmail, currentEmail, jobID, unixTime);
+                ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(9);
+
+            }
+        });
 
         return view;
     }

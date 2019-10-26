@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
+    int jobFocus;
+
     HomeFragment homeFragment = new HomeFragment();
     StudentProfileFragment studentProfileFragment = new StudentProfileFragment();
     StaffProfileFragment staffProfileFragment = new StaffProfileFragment();
@@ -123,6 +125,14 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
     public String getEmail(){
         return email;
+    }
+
+    public void setJobFocus(int jobID){
+        jobFocus = jobID;
+    }
+
+    public int getJobFocus(){
+        return jobFocus;
     }
 
 

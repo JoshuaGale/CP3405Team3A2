@@ -209,26 +209,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query;
         switch (userType){
             case 0:
-                query = "SELECT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION," +
-                        " j.JOB_TYPE, j.JOB_SALARY, j.JOB_DUE_DATE, j.DATE_CREATED, r.STUDENT_RECOMMENDED, j.LOCATION," +
-                        " r.RECOMMENDED_BY FROM JOB j, RECOMMENDATION r WHERE j.JOB_ID = r.JOB AND r.STUDENT_RECOMMENDED = " + "\'" + email + "\'";
-
+                query = "SELECT DISTINCT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION, j.JOB_TYPE, j.JOB_SALARY, j.JOB_DUE_DATE, j.DATE_CREATED, r.RECOMMENDED_BY FROM JOB j LEFT JOIN RECOMMENDATION r ON j.JOB_ID = r.JOB WHERE r.STUDENT_RECOMMENDED = " + "\'" + email + "\'";
                 break;
             case 1:
-                query = "SELECT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION," +
-                        " j.JOB_TYPE, j.JOB_SALARY, j.JOB_DUE_DATE, j.DATE_CREATED, r.STUDENT_RECOMMENDED, j.LOCATION," +
-                        " r.RECOMMENDED_BY FROM JOB j, RECOMMENDATION r WHERE j.JOB_ID = r.JOB AND r.RECOMMENDED_BY = " + "\'" + email + "\'";
-
+                query = "SELECT DISTINCT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION FROM JOB j LEFT JOIN RECOMMENDATION r ON j.JOB_ID = r.JOB WHERE r.RECOMMENDED_BY IS NOT NULL";
                 break;
             case 2:
-                query = "SELECT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION," +
-                        " j.JOB_TYPE, j.JOB_SALARY, j.JOB_DUE_DATE, j.DATE_CREATED, r.STUDENT_RECOMMENDED, j.LOCATION," +
-                        " r.RECOMMENDED_BY FROM JOB j, RECOMMENDATION r WHERE j.JOB_ID = r.JOB AND j.COMPANY = " + "\'" + email + "\'";
+                query = "SELECT DISTINCT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION, j.JOB_TYPE, j.JOB_SALARY, j.JOB_DUE_DATE, j.DATE_CREATED, r.RECOMMENDED_BY FROM JOB j LEFT JOIN RECOMMENDATION r ON j.JOB_ID = r.JOB WHERE j.COMPANY = " + "\'" + email + "\'";
                 break;
             case 3:
-                query = "SELECT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION," +
-                        " j.JOB_TYPE, j.JOB_SALARY, j.JOB_DUE_DATE, j.DATE_CREATED, r.STUDENT_RECOMMENDED, j.LOCATION," +
-                        " r.RECOMMENDED_BY FROM JOB j, RECOMMENDATION r WHERE j.JOB_ID = r.JOB AND r.RECOMMENDED_BY <> " + "\'" + email + "\'";
+                query = "SELECT DISTINCT j.COMPANY, j.JOB_TITLE, j.JOB_DESCRIPTION FROM JOB j LEFT JOIN RECOMMENDATION r ON j.JOB_ID = r.JOB WHERE r.JOB IS NULL";
                 break;
             default:
                 query = "";
@@ -236,11 +226,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return db.rawQuery(query, null);
     }
-     public Cursor getStudents(){
-         SQLiteDatabase db = this.getWritableDatabase();
-         String query = "SELECT NAME FROM PERSON p, USER u WHERE u.USER_TYPE = 0 AND u.EMAIL = p.EMAIL";
-         return db.rawQuery(query, null);
-     }
+    public Cursor getStudents(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT p.NAME, p.EMAIL FROM PERSON p, USER u WHERE u.USER_TYPE = 0 AND u.EMAIL = p.EMAIL";
+        return db.rawQuery(query, null);
+    }
+
+    public Cursor getJobID(String jobTitle){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT JOB_ID FROM JOB WHERE JOB_TITLE = " + "\'" + jobTitle + "\'";
+        Log.i("boi1", query);
+        return db.rawQuery(query, null);
+    }
 
 
     public void updateCompany(String email, String name, String description){

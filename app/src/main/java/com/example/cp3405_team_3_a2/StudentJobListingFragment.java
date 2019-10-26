@@ -50,7 +50,7 @@ public class StudentJobListingFragment extends Fragment {
 
         while(data.moveToNext()){
             jobNameArray.add(data.getString(1));
-            recommendedByArray.add(data.getString(8));
+            recommendedByArray.add(data.getString(7));
             jobDescriptArray.add(data.getString(2));
         }
 
