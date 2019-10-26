@@ -42,9 +42,9 @@ public class StaffJobListingFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_staff_job_listing, container, false);
 
-        ListView listView = view.findViewById(R.id.jobList);
+        final ListView listView = view.findViewById(R.id.jobList);
         Button newButton = view.findViewById(R.id.new_button);
-        Button compleatedButton = view.findViewById(R.id.completed_button);
+        Button completedButton = view.findViewById(R.id.completed_button);
 
 
         String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
@@ -66,7 +66,9 @@ public class StaffJobListingFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.i("bigboi", Integer.toString(i));
+                String jobName = listView.getItemAtPosition(i).toString();
+                ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(7);
+
             }
         });
 
@@ -77,7 +79,7 @@ public class StaffJobListingFragment extends Fragment {
             }
         });
 
-        compleatedButton.setOnClickListener(new View.OnClickListener() {
+        completedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 updateListView(1);

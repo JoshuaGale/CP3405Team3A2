@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class StaffStudentListFragment extends Fragment {
@@ -38,6 +40,22 @@ public class StaffStudentListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_staff_student_list, container, false);
+
+        final ListView listView = view.findViewById(R.id.student_list);
+
+        Cursor data = databaseHelper.getStudents();
+        ArrayList<String> jobNameArray = new ArrayList<>();
+
+        while(data.moveToNext()){
+            jobNameArray.add(data.getString(0));
+        }
+
+        String[] nameArray = jobNameArray.toArray(new String[0]);
+        Context con =  getActivity();
+
+        final StaffStudentListAdapter studentListAdapter = new StaffStudentListAdapter((MainActivity)con, nameArray);
+        listView.setAdapter(studentListAdapter);
+
 
         return view;
     }

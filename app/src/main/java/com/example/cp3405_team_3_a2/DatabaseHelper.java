@@ -235,7 +235,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return db.rawQuery(query, null);
     }
-
+     public Cursor getStudents(){
+         SQLiteDatabase db = this.getWritableDatabase();
+         String query = "SELECT NAME FROM PERSON p, USER u WHERE u.USER_TYPE = 0 AND u.EMAIL = p.EMAIL";
+         return db.rawQuery(query, null);
+     }
 
 
     public void updateCompany(String email, String name, String description){

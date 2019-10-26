@@ -12,40 +12,20 @@
     <LinearLayout
         android:id="@+id/profileMainItems"
         android:layout_width="match_parent"
-        android:layout_height="618sp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
-        style="@style/searchStyle"
-        />
-
-    <ScrollView
-        android:id="@+id/listOfStudentsScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView">
-
-        <LinearLayout
+        <SearchView
+            android:id="@+id/searchView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20sp"
-            android:layout_marginRight="20sp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/listOfStudentsScrollView"
-            app:layout_constraintTop_toBottomOf="@+id/headerLayout">
+            android:layout_height="0dp"
+            style="@style/searchStyle"
+            android:layout_weight="1" />
 
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-    </ScrollView>
+        <ListView
+            android:layout_weight="10"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:id="@+id/student_list"/>
     </LinearLayout>
 </FrameLayout>
