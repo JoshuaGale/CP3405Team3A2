@@ -43,12 +43,12 @@ public class CompanyAddNewJobFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_company_add_new_job, container, false);
         Context con =  getActivity();
 
-        final EditText jobTitle = view.findViewById(R.id.editText3);
-        final EditText location = view.findViewById(R.id.editText4);
-        final EditText type = view.findViewById(R.id.editText5);
-        final EditText salary = view.findViewById(R.id.editText6);
-        final EditText dateDue = view.findViewById(R.id.editText7);
-        final EditText description = view.findViewById(R.id.editText8);
+        final EditText jobTitle = view.findViewById(R.id.jobTitleEditText);
+        final EditText location = view.findViewById(R.id.locationEditText);
+        final EditText type = view.findViewById(R.id.typeEditText);
+        final EditText salary = view.findViewById(R.id.salaryEditText);
+        final EditText dateDue = view.findViewById(R.id.dateDueEditText);
+        final EditText description = view.findViewById(R.id.descriptionEditText);
 
         final long unixTime = System.currentTimeMillis() / 1000L;
 
@@ -57,8 +57,16 @@ public class CompanyAddNewJobFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //save information to database
-                databaseHelper.insertJob("google", jobTitle.toString(), description.toString(), type.toString(), salary.toString(), Long.parseLong(dateDue.toString()), unixTime);
+                databaseHelper.insertJob("google", jobTitle.getText().toString(),
+                        description.getText().toString(), type.getText().toString(), salary.getText().toString(),
+                        dateDue.getText().toString(), unixTime, location.getText().toString());
 
+                jobTitle.setText("");
+                location.setText("");
+                type.setText("");
+                salary.setText("");
+                dateDue.setText("");
+                description.setText("");
                 ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(5);
             }
         });
@@ -67,11 +75,40 @@ public class CompanyAddNewJobFragment extends Fragment {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                jobTitle.setText("");
+                location.setText("");
+                type.setText("");
+                salary.setText("");
+                dateDue.setText("");
+                description.setText("");
                 ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(5);
             }
         });
 
         return view;
+    }
+
+    public void updateListView(){
+        String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
+        Cursor data = databaseHelper.getJobDetails(email, 2);
+        ArrayList<String> jobNameArray = new ArrayList<>();
+        ArrayList<String> recommendedByArray = new ArrayList<>();
+        ArrayList<String> jobDescriptArray = new ArrayList<>();
+
+
+        while(data.moveToNext()){
+            jobNameArray.add(data.getString(1));
+            recommendedByArray.add(data.getString(8));
+            jobDescriptArray.add(data.getString(2));
+        }
+
+        String[] nameArray = jobNameArray.toArray(new String[0]);
+        String[] infoArray = recommendedByArray.toArray(new String[0]);
+        String[] jobDetailArray = jobDescriptArray.toArray(new String[0]);
+        Context con =  getActivity();
+        JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, infoArray, jobDetailArray);
+        ListView listView = getView().findViewById(R.id.jobList);
+        listView.setAdapter(jobListAdapter);
     }
 
     @Override

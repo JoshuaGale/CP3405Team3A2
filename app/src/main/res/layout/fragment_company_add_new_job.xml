@@ -34,7 +34,7 @@
                     android:layout_height="match_parent">
 
                     <EditText
-                        android:id="@+id/editText3"
+                        android:id="@+id/jobTitleEditText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="32dp"
@@ -44,40 +44,40 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/editText4"
+                        android:id="@+id/locationEditText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/dateDueHeader"
-                        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+                        app:layout_constraintTop_toBottomOf="@+id/jobTitleEditText" />
 
                     <EditText
-                        android:id="@+id/editText5"
+                        android:id="@+id/typeEditText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/dateDueHeader"
-                        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+                        app:layout_constraintTop_toBottomOf="@+id/locationEditText" />
 
                     <EditText
-                        android:id="@+id/editText6"
+                        android:id="@+id/salaryEditText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/dateDueHeader"
-                        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+                        app:layout_constraintTop_toBottomOf="@+id/typeEditText" />
 
                     <EditText
-                        android:id="@+id/editText7"
+                        android:id="@+id/dateDueEditText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toEndOf="@+id/dateDueHeader"
-                        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+                        app:layout_constraintTop_toBottomOf="@+id/salaryEditText" />
 
                     <EditText
-                        android:id="@+id/editText8"
+                        android:id="@+id/descriptionEditText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="36dp"
@@ -85,7 +85,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+                        app:layout_constraintTop_toBottomOf="@+id/dateDueEditText" />
 
                     <TextView
                         android:id="@+id/jobTitleHeader"
