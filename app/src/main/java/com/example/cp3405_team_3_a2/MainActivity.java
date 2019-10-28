@@ -32,9 +32,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     StudentJobListingFragment studentJobListingFragment = new StudentJobListingFragment();
     CompanyAddNewJobFragment companyAddNewJobFragment = new CompanyAddNewJobFragment();
     StaffJobListingFragment staffJobListingFragment = new StaffJobListingFragment();
+    ViewJobDetailsFragment viewJobDetailsFragment = new ViewJobDetailsFragment();
     Fragment[] fragments = {homeFragment, studentProfileFragment, staffProfileFragment, companyProfileFragment,
             studentJobListingFragment, companyJobListingFragment, companyJobDetailsFragment, staffStudentListFragment
-            ,companyAddNewJobFragment, staffJobListingFragment};
+            ,companyAddNewJobFragment, staffJobListingFragment, viewJobDetailsFragment};
 
 
     //home stuff

@@ -42,6 +42,7 @@ public class StudentJobListingFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_student_job_listing, container, false);
 
+
         String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
         Cursor data = databaseHelper.getJobDetails(email, 0);
         ArrayList<String> jobNameArray = new ArrayList<>();
@@ -49,9 +50,9 @@ public class StudentJobListingFragment extends Fragment {
         ArrayList<String> jobDescriptArray = new ArrayList<>();
 
         while(data.moveToNext()){
-            jobNameArray.add("Job Title: " + data.getString(1) + " at " + data.getString(0));
+            jobNameArray.add("Job Title: " + data.getString(1));
             recommendedByArray.add("Position Salary: " + data.getString(4));
-            jobDescriptArray.add("Job Description: " + data.getString(2));
+            jobDescriptArray.add(" at " + data.getString(0) + "\n" + "Job Description: " + data.getString(2));
         }
 
         String[] nameArray = jobNameArray.toArray(new String[0]);
@@ -59,14 +60,19 @@ public class StudentJobListingFragment extends Fragment {
         String[] jobDetailArray = jobDescriptArray.toArray(new String[0]);
         Context con =  getActivity();
         JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, infoArray, jobDetailArray);
-        ListView listView = view.findViewById(R.id.jobList);
+        final ListView listView = view.findViewById(R.id.jobList);
         listView.setAdapter(jobListAdapter);
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.i("bigboi", Integer.toString(i));
+                String jobName = listView.getItemAtPosition(i).toString();
+                jobName = jobName.substring(11);
+                Cursor idData = databaseHelper.getJobID(jobName);
+                idData.moveToFirst();
+                ((MainActivity) Objects.requireNonNull(getActivity())).setJobFocus(idData.getInt(0));
+                ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(10);
             }
         });
 

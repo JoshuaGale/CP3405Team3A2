@@ -48,9 +48,9 @@ public class HomeFragment extends Fragment {
 
         if (userType == 0 || userType == 2){
             while(data.moveToNext()){
-                jobNameArray.add("New Recommendation: " + data.getString(7) + " from " + data.getString(6));
+                jobNameArray.add("New Recommendation: " + data.getString(7));
                 recommendationArray.add("Recommended By: " + data.getString(2));
-                notificationTypeArray.add("Job Location: " + data.getString(13));
+                notificationTypeArray.add("From " + data.getString(6) + "\n" + "Job Location: " + data.getString(13));
 
             }
         }
@@ -69,14 +69,19 @@ public class HomeFragment extends Fragment {
         String[] typeArray = notificationTypeArray.toArray(new String[0]);
         Context con =  getActivity();
         JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, infoArray, typeArray);
-        ListView listView = view.findViewById(R.id.itemList);
+        final ListView listView = view.findViewById(R.id.itemList);
         listView.setAdapter(jobListAdapter);
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.i("bigboi", Integer.toString(i));
+                String jobName = listView.getItemAtPosition(i).toString();
+                jobName = jobName.substring(20);
+                Cursor idData = databaseHelper.getJobID(jobName);
+                idData.moveToFirst();
+                ((MainActivity) Objects.requireNonNull(getActivity())).setJobFocus(idData.getInt(0));
+                ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(10);
             }
         });
 
