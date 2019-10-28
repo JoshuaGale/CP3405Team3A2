@@ -45,12 +45,14 @@ public class HomeFragment extends Fragment {
         ArrayList<String> jobNameArray = new ArrayList<>();
         ArrayList<String> recommendationArray = new ArrayList<>();
         ArrayList<String> notificationTypeArray = new ArrayList<>();
+        ArrayList<String> recommendedByArray = new ArrayList<>();
 
         if (userType == 0 || userType == 2){
             while(data.moveToNext()){
                 jobNameArray.add("New Recommendation: " + data.getString(7));
                 recommendationArray.add("Recommended By: " + data.getString(2));
-                notificationTypeArray.add("From " + data.getString(6) + "\n" + "Job Location: " + data.getString(13));
+                recommendedByArray.add("From: " + data.getString(6) );
+                notificationTypeArray.add("Job Location: " + data.getString(13));
 
             }
         }
@@ -60,15 +62,17 @@ public class HomeFragment extends Fragment {
                 jobNameArray.add(data.getString(1));
                 recommendationArray.add("");
                 notificationTypeArray.add(data.getString(3));
+                recommendedByArray.add("From: " + data.getString(6) );
 
             }
         }
 
         String[] nameArray = jobNameArray.toArray(new String[0]);
+        String[] fromArray = recommendedByArray.toArray(new String[0]);
         String[] infoArray = recommendationArray.toArray(new String[0]);
         String[] typeArray = notificationTypeArray.toArray(new String[0]);
         Context con =  getActivity();
-        JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, infoArray, typeArray);
+        JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, fromArray, infoArray, typeArray);
         final ListView listView = view.findViewById(R.id.itemList);
         listView.setAdapter(jobListAdapter);
 

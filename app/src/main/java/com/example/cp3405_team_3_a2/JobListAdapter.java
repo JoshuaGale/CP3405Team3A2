@@ -14,6 +14,9 @@ public class JobListAdapter extends ArrayAdapter {
     //to store the list of job title
     private final String[] jobNameArray;
 
+    //to store the list of recommending companies
+    private final String[] fromCompanyArray;
+
     //to store the list of staff who recommended the job
     private final String[] recommendedByArray;
 
@@ -21,11 +24,12 @@ public class JobListAdapter extends ArrayAdapter {
     private final String[] jobDetailArray;
 
 
-    public JobListAdapter(Activity context, String[] jobNameParam, String[] recommendedByParam, String[] jobDescriptParam){
+    public JobListAdapter(Activity context, String[] jobNameParam, String[] fromCompanyParam, String[] recommendedByParam, String[] jobDescriptParam){
 
         super(context,R.layout.row , jobNameParam);
         this.context=context;
         this.jobNameArray = jobNameParam;
+        this.fromCompanyArray = fromCompanyParam;
         this.recommendedByArray = recommendedByParam;
         this.jobDetailArray = jobDescriptParam;
     }
@@ -36,13 +40,15 @@ public class JobListAdapter extends ArrayAdapter {
 
         //this code gets references to objects in the listview_row.xml file
         TextView nameTextField = rowView.findViewById(R.id.text1);
-        TextView infoTextField = rowView.findViewById(R.id.text2);
-        TextView recommendedTextField = rowView.findViewById(R.id.text3);
+        TextView recommendingCompanyTextField = rowView.findViewById(R.id.text2);
+        TextView infoTextField = rowView.findViewById(R.id.text3);
+        TextView recommendedTextField = rowView.findViewById(R.id.text4);
 
 
 
         //this code sets the values of the objects to values from the arrays
         nameTextField.setText(jobNameArray[position]);
+        recommendingCompanyTextField.setText(fromCompanyArray[position]);
         infoTextField.setText(jobDetailArray[position]);
         recommendedTextField.setText(recommendedByArray[position]);
 

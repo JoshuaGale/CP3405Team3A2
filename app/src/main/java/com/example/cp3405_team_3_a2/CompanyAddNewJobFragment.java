@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -49,6 +50,7 @@ public class CompanyAddNewJobFragment extends Fragment {
         final EditText salary = view.findViewById(R.id.salaryEditText);
         final EditText dateDue = view.findViewById(R.id.dateDueEditText);
         final EditText description = view.findViewById(R.id.descriptionEditText);
+        final TextView errorText = view.findViewById(R.id.error_text);
 
         final long unixTime = System.currentTimeMillis() / 1000L;
 
@@ -56,18 +58,26 @@ public class CompanyAddNewJobFragment extends Fragment {
         createNewJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //save information to database
-                databaseHelper.insertJob("google", jobTitle.getText().toString(),
-                        description.getText().toString(), type.getText().toString(), salary.getText().toString(),
-                        dateDue.getText().toString(), unixTime, location.getText().toString());
+                if(jobTitle.getText().toString().equals("") || description.getText().toString().equals("")
+                || description.getText().toString().equals("") || type.getText().toString().equals("")
+                || salary.getText().toString().equals("") || dateDue.getText().toString().equals("")
+                || location.getText().toString().equals("")){
+                    errorText.setText("Please Fill All Fields");
+                }
+                else{
+                    //save information to database
+                    databaseHelper.insertJob("google", jobTitle.getText().toString(),
+                            description.getText().toString(), type.getText().toString(), salary.getText().toString(),
+                            dateDue.getText().toString(), unixTime, location.getText().toString());
 
-                jobTitle.setText("");
-                location.setText("");
-                type.setText("");
-                salary.setText("");
-                dateDue.setText("");
-                description.setText("");
-                ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(5);
+                    jobTitle.setText("");
+                    location.setText("");
+                    type.setText("");
+                    salary.setText("");
+                    dateDue.setText("");
+                    description.setText("");
+                    ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(5);
+                }
             }
         });
 
@@ -86,29 +96,6 @@ public class CompanyAddNewJobFragment extends Fragment {
         });
 
         return view;
-    }
-
-    public void updateListView(){
-        String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
-        Cursor data = databaseHelper.getJobDetails(email, 2);
-        ArrayList<String> jobNameArray = new ArrayList<>();
-        ArrayList<String> recommendedByArray = new ArrayList<>();
-        ArrayList<String> jobDescriptArray = new ArrayList<>();
-
-
-        while(data.moveToNext()){
-            jobNameArray.add(data.getString(1));
-            recommendedByArray.add(data.getString(7));
-            jobDescriptArray.add(data.getString(2));
-        }
-
-        String[] nameArray = jobNameArray.toArray(new String[0]);
-        String[] infoArray = recommendedByArray.toArray(new String[0]);
-        String[] jobDetailArray = jobDescriptArray.toArray(new String[0]);
-        Context con =  getActivity();
-        JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, infoArray, jobDetailArray);
-        ListView listView = getView().findViewById(R.id.jobList);
-        listView.setAdapter(jobListAdapter);
     }
 
     @Override

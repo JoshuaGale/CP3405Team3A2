@@ -146,9 +146,20 @@
                         android:textSize="25sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/dateDueHeader" />
+
+                    <TextView
+                        android:id="@+id/error_text"
+                        style="@style/errorText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text=""
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/descriptionEditText" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </ScrollView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -158,25 +169,25 @@
                 android:id="@+id/saveJobListButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginBottom="8dp"
+                android:layout_weight="1"
                 android:text="Save and submit"
                 app:layout_constraintBottom_toTopOf="@+id/nav_view"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_weight="1"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/cancelNewJobListButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginBottom="8dp"
+                android:layout_weight="1"
                 android:text="Cancel"
                 app:layout_constraintBottom_toTopOf="@+id/nav_view"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_weight="1"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"/>
+                app:layout_constraintStart_toStartOf="parent" />
         </LinearLayout>
     </LinearLayout>
 

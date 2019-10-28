@@ -46,20 +46,23 @@ public class StudentJobListingFragment extends Fragment {
         String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
         Cursor data = databaseHelper.getJobDetails(email, 0);
         ArrayList<String> jobNameArray = new ArrayList<>();
+        ArrayList<String> fromCompanyArray = new ArrayList<>();
         ArrayList<String> recommendedByArray = new ArrayList<>();
         ArrayList<String> jobDescriptArray = new ArrayList<>();
 
         while(data.moveToNext()){
             jobNameArray.add("Job Title: " + data.getString(1));
             recommendedByArray.add("Position Salary: " + data.getString(4));
-            jobDescriptArray.add(" at " + data.getString(0) + "\n" + "Job Description: " + data.getString(2));
+            fromCompanyArray.add("At: " + data.getString(0));
+            jobDescriptArray.add("Job Description: " + data.getString(2));
         }
 
         String[] nameArray = jobNameArray.toArray(new String[0]);
+        String[] companyArray = fromCompanyArray.toArray(new String[0]);
         String[] infoArray = recommendedByArray.toArray(new String[0]);
         String[] jobDetailArray = jobDescriptArray.toArray(new String[0]);
         Context con =  getActivity();
-        JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, infoArray, jobDetailArray);
+        JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, companyArray, infoArray, jobDetailArray);
         final ListView listView = view.findViewById(R.id.jobList);
         listView.setAdapter(jobListAdapter);
 

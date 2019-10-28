@@ -35,6 +35,14 @@
         android:layout_height="wrap_content"
         style="@style/text"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <TextView
+        android:id="@+id/text4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/text"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"/>
     </LinearLayout>
