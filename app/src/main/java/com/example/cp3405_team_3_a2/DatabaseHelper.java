@@ -239,6 +239,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(query, null);
     }
 
+    public Cursor getJobDetailsView(int jobID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT COMPANY, JOB_TITLE, JOB_DESCRIPTION, JOB_TYPE, JOB_SALARY," +
+                "JOB_DUE_DATE, DATE_CREATED, LOCATION FROM JOB WHERE JOB_ID = " + "'" + jobID + "'";
+        return db.rawQuery(query, null);
+    }
+
 
     public void updateCompany(String email, String name, String description){
         SQLiteDatabase db = this.getWritableDatabase();
