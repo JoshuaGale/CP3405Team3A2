@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,24 +46,35 @@ public class HomeFragment extends Fragment {
         ArrayList<String> notificationTypeArray = new ArrayList<>();
         ArrayList<String> recommendedByArray = new ArrayList<>();
 
-        if (userType == 0 || userType == 2){
-            while(data.moveToNext()){
-                jobNameArray.add("New Recommendation: " + data.getString(7));
-                recommendationArray.add("Recommended By: " + data.getString(2));
-                recommendedByArray.add("From: " + data.getString(6) );
-                notificationTypeArray.add("Job Location: " + data.getString(13));
+        switch(userType){
+            case 0: //student
+                while(data.moveToNext()){
+                    jobNameArray.add("New Recommendation: " + data.getString(7));
+                    recommendationArray.add("Recommended By: " + data.getString(2));
+                    recommendedByArray.add("From: " + data.getString(6) );
+                    notificationTypeArray.add("Job Location: " + data.getString(13));
 
-            }
-        }
-
-        else {
-            while(data.moveToNext()){
-                jobNameArray.add(data.getString(1));
-                recommendationArray.add("");
-                notificationTypeArray.add(data.getString(3));
-                recommendedByArray.add("From: " + data.getString(6) );
-
-            }
+                    data.close();
+                }
+                break;
+            case 1: //staff
+                while(data.moveToNext()){
+                    jobNameArray.add(data.getString(1));
+                    recommendationArray.add("");
+                    notificationTypeArray.add(data.getString(3));
+                    recommendedByArray.add("From: " + data.getString(6) );
+                }
+                data.close();
+                break;
+            case 2: //company
+                while(data.moveToNext()){
+                    jobNameArray.add(data.getString(1));
+                    recommendationArray.add("");
+                    notificationTypeArray.add(data.getString(3));
+                    recommendedByArray.add("From: " + data.getString(6) );
+                }
+                data.close();
+                break;
         }
 
         String[] nameArray = jobNameArray.toArray(new String[0]);
@@ -72,7 +82,7 @@ public class HomeFragment extends Fragment {
         String[] infoArray = recommendationArray.toArray(new String[0]);
         String[] typeArray = notificationTypeArray.toArray(new String[0]);
         Context con =  getActivity();
-        JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, fromArray, infoArray, typeArray);
+        StudentAdapter jobListAdapter = new StudentAdapter((MainActivity)con, nameArray, fromArray, infoArray, typeArray);
         final ListView listView = view.findViewById(R.id.itemList);
         listView.setAdapter(jobListAdapter);
 

@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,9 +38,10 @@ public class ViewJobDetailsFragment extends Fragment {
         int jobID = ((MainActivity) Objects.requireNonNull(getActivity())).getJobFocus();
         Cursor data = databaseHelper.getJobDetailsView(jobID);
         data.moveToFirst();
-
         TextView jobTitleTextView = view.findViewById(R.id.editText3);
-        jobTitleTextView.setText(data.getString(1));
+        jobTitleTextView.setText("");
+        String jobTitle = data.getString(1);
+        jobTitleTextView.setText(jobTitle);
         TextView jobLocationTextView = view.findViewById(R.id.editText4);
         jobLocationTextView.setText(data.getString(7));
         TextView jobTypeTextView = view.findViewById(R.id.editText5);
@@ -50,6 +53,7 @@ public class ViewJobDetailsFragment extends Fragment {
         TextView jobDescriptionTextView = view.findViewById(R.id.editText8);
         jobDescriptionTextView.setText(data.getString(2));
 
+        data.close();
         return view;
 
 
@@ -71,5 +75,29 @@ public class ViewJobDetailsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        int jobID = ((MainActivity) Objects.requireNonNull(getActivity())).getJobFocus();
+        Cursor data = databaseHelper.getJobDetailsView(jobID);
+        data.moveToFirst();
+        TextView jobTitleTextView = getView().findViewById(R.id.editText3);
+        jobTitleTextView.setText("");
+        String jobTitle = data.getString(1);
+        jobTitleTextView.setText(jobTitle);
+        TextView jobLocationTextView = getView().findViewById(R.id.editText4);
+        jobLocationTextView.setText(data.getString(7));
+        TextView jobTypeTextView = getView().findViewById(R.id.editText5);
+        jobTypeTextView.setText(data.getString(3));
+        TextView jobSalaryTextView = getView().findViewById(R.id.editText6);
+        jobSalaryTextView.setText(data.getString(4));
+        TextView jobDueDateTextView = getView().findViewById(R.id.editText7);
+        jobDueDateTextView.setText(data.getString(5));
+        TextView jobDescriptionTextView = getView().findViewById(R.id.editText8);
+        jobDescriptionTextView.setText(data.getString(2));
+
+        data.close();
     }
 }

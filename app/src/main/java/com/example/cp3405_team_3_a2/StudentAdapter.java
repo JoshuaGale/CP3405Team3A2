@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class JobListAdapter extends ArrayAdapter {
+public class StudentAdapter extends ArrayAdapter {
     //to reference the Activity
     private final Activity context;
 
@@ -24,7 +24,7 @@ public class JobListAdapter extends ArrayAdapter {
     private final String[] jobDetailArray;
 
 
-    public JobListAdapter(Activity context, String[] jobNameParam, String[] fromCompanyParam, String[] recommendedByParam, String[] jobDescriptParam){
+    public StudentAdapter(Activity context, String[] jobNameParam, String[] fromCompanyParam, String[] recommendedByParam, String[] jobDescriptParam){
 
         super(context,R.layout.row , jobNameParam);
         this.context=context;

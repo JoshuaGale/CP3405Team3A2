@@ -2,20 +2,15 @@ package com.example.cp3405_team_3_a2;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.text.method.KeyListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -54,7 +49,12 @@ public class StudentJobListingFragment extends Fragment {
             jobNameArray.add("Job Title: " + data.getString(1));
             recommendedByArray.add("Position Salary: " + data.getString(4));
             fromCompanyArray.add("At: " + data.getString(0));
-            jobDescriptArray.add("Job Description: " + data.getString(2));
+            if(data.getString(2).length() > 50){
+                jobDescriptArray.add("Job Description: " + data.getString(2).substring(0, 90) + " ...");
+            }
+            else{
+                jobDescriptArray.add("Job Description: " + data.getString(2));
+            }
         }
 
         String[] nameArray = jobNameArray.toArray(new String[0]);
@@ -62,7 +62,7 @@ public class StudentJobListingFragment extends Fragment {
         String[] infoArray = recommendedByArray.toArray(new String[0]);
         String[] jobDetailArray = jobDescriptArray.toArray(new String[0]);
         Context con =  getActivity();
-        JobListAdapter jobListAdapter = new JobListAdapter((MainActivity)con, nameArray, companyArray, infoArray, jobDetailArray);
+        StudentAdapter jobListAdapter = new StudentAdapter((MainActivity)con, nameArray, companyArray, infoArray, jobDetailArray);
         final ListView listView = view.findViewById(R.id.jobList);
         listView.setAdapter(jobListAdapter);
 

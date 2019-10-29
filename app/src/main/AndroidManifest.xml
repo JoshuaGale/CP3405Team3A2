@@ -12,8 +12,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".StaffProfileActivity"/>
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="sensorPortrait">
