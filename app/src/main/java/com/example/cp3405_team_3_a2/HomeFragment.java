@@ -54,24 +54,23 @@ public class HomeFragment extends Fragment {
                     recommendedByArray.add("From: " + data.getString(6) );
                     notificationTypeArray.add("Job Location: " + data.getString(13));
 
-                    data.close();
                 }
                 break;
             case 1: //staff
+                data = databaseHelper.getJobDetails(email, userType);
                 while(data.moveToNext()){
-                    jobNameArray.add(data.getString(1));
-                    recommendationArray.add("");
-                    notificationTypeArray.add(data.getString(3));
-                    recommendedByArray.add("From: " + data.getString(6) );
+                    jobNameArray.add("Job Title: " + data.getString(1));
+                    recommendationArray.add("Job Description " + data.getString(2));
+                    notificationTypeArray.add("Offered By: " + data.getString(0));
                 }
                 data.close();
                 break;
             case 2: //company
                 while(data.moveToNext()){
                     jobNameArray.add(data.getString(1));
-                    recommendationArray.add("");
-                    notificationTypeArray.add(data.getString(3));
-                    recommendedByArray.add("From: " + data.getString(6) );
+                    recommendationArray.add("Job Title: " + data.getString(1));
+                    notificationTypeArray.add("Student Name: " + data.getString(3));
+                    recommendedByArray.add("Recommended By: " + data.getString(6) );
                 }
                 data.close();
                 break;
@@ -82,22 +81,32 @@ public class HomeFragment extends Fragment {
         String[] infoArray = recommendationArray.toArray(new String[0]);
         String[] typeArray = notificationTypeArray.toArray(new String[0]);
         Context con =  getActivity();
-        StudentAdapter jobListAdapter = new StudentAdapter((MainActivity)con, nameArray, fromArray, infoArray, typeArray);
-        final ListView listView = view.findViewById(R.id.itemList);
-        listView.setAdapter(jobListAdapter);
+        switch(userType){
+            case 0:
+                StudentAdapter jobListAdapter = new StudentAdapter((MainActivity)con, nameArray, fromArray, infoArray, typeArray);
+                final ListView listView = view.findViewById(R.id.itemList);
+                listView.setAdapter(jobListAdapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        String jobName = listView.getItemAtPosition(i).toString();
+                        jobName = jobName.substring(20);
+                        Cursor idData = databaseHelper.getJobID(jobName);
+                        idData.moveToFirst();
+                        ((MainActivity) Objects.requireNonNull(getActivity())).setJobFocus(idData.getInt(0));
+                        ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(10);
+                    }
+                });
+                break;
+            case 1:
+            case 2:
+                StaffAndCompanyAdapter staffAndCompanyAdapter = new StaffAndCompanyAdapter((MainActivity)con, nameArray, infoArray, typeArray);
+                final ListView staffAndCompanyList = view.findViewById(R.id.itemList);
+                staffAndCompanyList.setAdapter(staffAndCompanyAdapter);
+                break;
+        }
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String jobName = listView.getItemAtPosition(i).toString();
-                jobName = jobName.substring(20);
-                Cursor idData = databaseHelper.getJobID(jobName);
-                idData.moveToFirst();
-                ((MainActivity) Objects.requireNonNull(getActivity())).setJobFocus(idData.getInt(0));
-                ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(10);
-            }
-        });
 
         // Inflate the layout for this fragment
         return view;
