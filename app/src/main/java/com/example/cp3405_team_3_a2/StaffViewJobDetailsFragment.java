@@ -4,21 +4,23 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import java.util.Objects;
 
 
-public class ViewJobDetailsFragment extends Fragment {
+public class StaffViewJobDetailsFragment extends Fragment {
     private HomeFragment.OnFragmentInteractionListener mListener;
     private DatabaseHelper databaseHelper;
 
-    public ViewJobDetailsFragment() {
+    public StaffViewJobDetailsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,10 +32,10 @@ public class ViewJobDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_view_job_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_view_job_details_staff, container, false);
 
         int jobID = ((MainActivity) Objects.requireNonNull(getActivity())).getJobFocus();
-        Cursor data = databaseHelper.getJobDetailsView(jobID);
+        Cursor data = databaseHelper.getStaffJobDetailsView(jobID);
         data.moveToFirst();
         TextView jobTitleTextView = view.findViewById(R.id.editText3);
         jobTitleTextView.setText("");
@@ -49,6 +51,8 @@ public class ViewJobDetailsFragment extends Fragment {
         jobDueDateTextView.setText(data.getString(5));
         TextView jobDescriptionTextView = view.findViewById(R.id.editText8);
         jobDescriptionTextView.setText(data.getString(2));
+        TextView jobRecommendedTextView = view.findViewById(R.id.editText9);
+        jobRecommendedTextView.setText(data.getString(8));
 
         data.close();
         return view;
@@ -78,7 +82,7 @@ public class ViewJobDetailsFragment extends Fragment {
     public void onResume(){
         super.onResume();
         int jobID = ((MainActivity) Objects.requireNonNull(getActivity())).getJobFocus();
-        Cursor data = databaseHelper.getJobDetailsView(jobID);
+        Cursor data = databaseHelper.getStaffJobDetailsView(jobID);
         data.moveToFirst();
         TextView jobTitleTextView = getView().findViewById(R.id.editText3);
         jobTitleTextView.setText("");
@@ -94,6 +98,9 @@ public class ViewJobDetailsFragment extends Fragment {
         jobDueDateTextView.setText(data.getString(5));
         TextView jobDescriptionTextView = getView().findViewById(R.id.editText8);
         jobDescriptionTextView.setText(data.getString(2));
+        TextView jobRecommendedTextView = getView().findViewById(R.id.editText9);
+        jobRecommendedTextView.setText(data.getString(8));
+
 
         data.close();
     }

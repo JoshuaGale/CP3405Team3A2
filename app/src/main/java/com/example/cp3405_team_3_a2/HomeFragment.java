@@ -99,6 +99,22 @@ public class HomeFragment extends Fragment {
                 });
                 break;
             case 1:
+                StaffAndCompanyAdapter staffAdapter = new StaffAndCompanyAdapter((MainActivity)con, nameArray, infoArray, typeArray);
+                final ListView staffList = view.findViewById(R.id.itemList);
+                staffList.setAdapter(staffAdapter);
+                staffList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        String jobName = staffList.getItemAtPosition(i).toString();
+                        jobName = jobName.substring(11);
+                        Cursor idData = databaseHelper.getJobID(jobName);
+                        idData.moveToFirst();
+                        ((MainActivity) Objects.requireNonNull(getActivity())).setJobFocus(idData.getInt(0));
+                        ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(11);
+
+                    }
+                });
+                break;
             case 2:
                 StaffAndCompanyAdapter staffAndCompanyAdapter = new StaffAndCompanyAdapter((MainActivity)con, nameArray, infoArray, typeArray);
                 final ListView staffAndCompanyList = view.findViewById(R.id.itemList);
