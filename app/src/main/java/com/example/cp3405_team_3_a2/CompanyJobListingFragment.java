@@ -42,33 +42,27 @@ public class CompanyJobListingFragment extends Fragment {
         String email = ((MainActivity) Objects.requireNonNull(getActivity())).getEmail();
         Cursor data = databaseHelper.getJobDetails(email, 2);
         ArrayList<String> jobNameArray = new ArrayList<>();
-        ArrayList<String> fromCompanyArray = new ArrayList<>();
         ArrayList<String> recommendedByArray = new ArrayList<>();
         ArrayList<String> jobDescriptArray = new ArrayList<>();
 
         while(data.moveToNext()){
             jobNameArray.add("Job Title: " + data.getString(1));
-            recommendedByArray.add("Position Salary: " + data.getString(4));
-            fromCompanyArray.add("Offered At: " + data.getString(0));
-            jobDescriptArray.add("Job Description: " + data.getString(2));
+            if(data.getString(2).length() > 50){
+                recommendedByArray.add("Job Description: " + data.getString(2).substring(0, 90) + " ...");
+            }
+            else{
+                recommendedByArray.add("Job Description: " + data.getString(2));
+            }
+            jobDescriptArray.add("Job Type: " + data.getString(3));
         }
 
         String[] nameArray = jobNameArray.toArray(new String[0]);
-        String[] companyArray = fromCompanyArray.toArray(new String[0]);
         String[] infoArray = recommendedByArray.toArray(new String[0]);
         String[] jobDetailArray = jobDescriptArray.toArray(new String[0]);
         Context con =  getActivity();
-        StudentAdapter jobListAdapter = new StudentAdapter((MainActivity)con, nameArray, companyArray, infoArray, jobDetailArray);
+        StaffAndCompanyAdapter jobListAdapter = new StaffAndCompanyAdapter((MainActivity)con, nameArray, infoArray, jobDetailArray);
         final ListView listView = view.findViewById(R.id.jobList);
         listView.setAdapter(jobListAdapter);
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.i("bigboi", Integer.toString(i));
-            }
-        });
 
         Button createNewJob = view.findViewById(R.id.newJobListButton);
         createNewJob.setOnClickListener(new View.OnClickListener() {

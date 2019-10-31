@@ -66,11 +66,12 @@ public class HomeFragment extends Fragment {
                 data.close();
                 break;
             case 2: //company
+                data = databaseHelper.getUserRecommendations(email, userType);
                 while(data.moveToNext()){
-                    jobNameArray.add(data.getString(1));
-                    recommendationArray.add("Job Title: " + data.getString(1));
-                    notificationTypeArray.add("Student Name: " + data.getString(3));
-                    recommendedByArray.add("Recommended By: " + data.getString(6) );
+                    jobNameArray.add("Job Title: " + data.getString(7));
+                    recommendationArray.add("Student Name: " + data.getString(1));
+                    notificationTypeArray.add("Recommended By: " + data.getString(2));
+                    recommendedByArray.add("Recommended By: " + data.getString(2));
                 }
                 data.close();
                 break;
@@ -119,6 +120,18 @@ public class HomeFragment extends Fragment {
                 StaffAndCompanyAdapter staffAndCompanyAdapter = new StaffAndCompanyAdapter((MainActivity)con, nameArray, infoArray, typeArray);
                 final ListView staffAndCompanyList = view.findViewById(R.id.itemList);
                 staffAndCompanyList.setAdapter(staffAndCompanyAdapter);
+                staffAndCompanyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        String jobName = staffAndCompanyList.getItemAtPosition(i).toString();
+                        jobName = jobName.substring(11);
+                        Cursor idData = databaseHelper.getJobID(jobName);
+                        idData.moveToFirst();
+                        ((MainActivity) Objects.requireNonNull(getActivity())).setJobFocus(idData.getInt(0));
+                        ((MainActivity) Objects.requireNonNull(getActivity())).changeFragment(11);
+
+                    }
+                });
                 break;
         }
 
