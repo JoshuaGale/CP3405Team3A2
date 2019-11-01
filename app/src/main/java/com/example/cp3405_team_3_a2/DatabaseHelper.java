@@ -248,9 +248,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getStaffJobDetailsView(int jobID){
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT COMPANY, JOB_TITLE, JOB_DESCRIPTION, JOB_TYPE, JOB_SALARY," +
-                "JOB_DUE_DATE, JOB.DATE_CREATED, LOCATION, STUDENT_RECOMMENDED " +
-                "FROM JOB LEFT JOIN RECOMMENDATION ON JOB.JOB_ID = RECOMMENDATION.JOB WHERE JOB_ID = " + "\'" + jobID + "\'";
+        String query = "SELECT COMPANY, JOB_TITLE, JOB_DESCRIPTION, JOB_TYPE, JOB_SALARY, JOB_DUE_DATE," +
+                " JOB.DATE_CREATED, LOCATION, STUDENT_RECOMMENDED, NAME FROM JOB LEFT JOIN RECOMMENDATION " +
+                "ON JOB.JOB_ID = RECOMMENDATION.JOB LEFT JOIN PERSON ON PERSON.EMAIL = RECOMMENDATION.STUDENT_RECOMMENDED WHERE JOB_ID = " + "\'" + jobID + "\'";
         return db.rawQuery(query, null);
     }
 

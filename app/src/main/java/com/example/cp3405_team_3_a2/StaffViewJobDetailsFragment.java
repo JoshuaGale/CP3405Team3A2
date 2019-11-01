@@ -52,7 +52,13 @@ public class StaffViewJobDetailsFragment extends Fragment {
         TextView jobDescriptionTextView = view.findViewById(R.id.editText8);
         jobDescriptionTextView.setText(data.getString(2));
         TextView jobRecommendedTextView = view.findViewById(R.id.editText9);
-        jobRecommendedTextView.setText(data.getString(8));
+        //jobRecommendedTextView.setText(data.getString(8));
+
+        String recommendedList = data.getString(9);
+        while(data.moveToNext()){
+            recommendedList = recommendedList + "\n" + data.getString(9);
+        }
+        jobRecommendedTextView.setText(recommendedList);
 
         data.close();
         return view;
@@ -99,8 +105,13 @@ public class StaffViewJobDetailsFragment extends Fragment {
         TextView jobDescriptionTextView = getView().findViewById(R.id.editText8);
         jobDescriptionTextView.setText(data.getString(2));
         TextView jobRecommendedTextView = getView().findViewById(R.id.editText9);
-        jobRecommendedTextView.setText(data.getString(8));
+        //jobRecommendedTextView.setText(data.getString(8));
 
+        String recommendedList = data.getString(9);
+        while(data.moveToNext()){
+            recommendedList = recommendedList + "\n" + data.getString(9);
+        }
+        jobRecommendedTextView.setText(recommendedList);
 
         data.close();
     }
