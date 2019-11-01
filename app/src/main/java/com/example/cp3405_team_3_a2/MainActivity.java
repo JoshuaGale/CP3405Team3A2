@@ -34,9 +34,14 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
     StaffJobListingFragment staffJobListingFragment = new StaffJobListingFragment();
     ViewJobDetailsFragment viewJobDetailsFragment = new ViewJobDetailsFragment();
     StaffViewJobDetailsFragment staffViewJobDetailsFragment = new StaffViewJobDetailsFragment();
+    SettingsFragment settingsFragment = new SettingsFragment();
+    StaffMessageListFragment staffMessageListFragment = new StaffMessageListFragment();
+    StudentMessageListFragment studentMessageListFragment = new StudentMessageListFragment();
+    CompanyMessageListFragment companyMessageListFragment = new CompanyMessageListFragment();
     Fragment[] fragments = {homeFragment, studentProfileFragment, staffProfileFragment, companyProfileFragment,
             studentJobListingFragment, companyJobListingFragment, companyJobDetailsFragment, staffStudentListFragment
-            ,companyAddNewJobFragment, staffJobListingFragment, viewJobDetailsFragment, staffViewJobDetailsFragment};
+            ,companyAddNewJobFragment, staffJobListingFragment, viewJobDetailsFragment, staffViewJobDetailsFragment,
+            settingsFragment, staffMessageListFragment, studentMessageListFragment, companyMessageListFragment};
 
 
     //home stuff
@@ -91,12 +96,22 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
                     case R.id.messagesButton:
                         homeHeading.setText("Messaging");
-
+                        switch (databaseHelper.getUserType(email)){
+                            case 0:
+                                changeFragment(14);
+                                break;
+                            case 1:
+                                changeFragment(13);
+                                break;
+                            case 2:
+                                changeFragment(15);
+                                break;
+                        }
                         break;
 
                     case R.id.settingsButton:
                         homeHeading.setText("Settings");
-
+                        changeFragment(12);
                         break;
 
                 }
